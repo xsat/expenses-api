@@ -2,7 +2,7 @@
 
 use App\Controllers\IndexController;
 use App\v1_0\Controllers\AuthController;
-use App\v1_0\Controllers\CostController;
+use App\v1_0\Controllers\ExpenseController;
 use App\v1_0\Controllers\PublicAuthController;
 use App\v1_0\Controllers\PublicUserController;
 use App\v1_0\Controllers\UserController;
@@ -24,12 +24,12 @@ return new Routes([
             new Route(UserController::class, null, 'update', Request::METHOD_DELETE),
             new Route(UserController::class, null, 'delete', Request::METHOD_DELETE),
         ])),
-        new Group('cost', new Routes([
-            new Route(CostController::class, null, 'list', Request::METHOD_GET),
-            new Route(CostController::class, '([0-9]+)', 'view', Request::METHOD_GET),
-            new Route(CostController::class, null, 'create', Request::METHOD_POST),
-            new Route(CostController::class, '([0-9]+)', 'update', Request::METHOD_DELETE),
-            new Route(CostController::class, '([0-9]+)', 'delete', Request::METHOD_DELETE),
+        new Group('expense', new Routes([
+            new Route(ExpenseController::class, null, 'list', Request::METHOD_GET),
+            new Route(ExpenseController::class, '([0-9]+)', 'view', Request::METHOD_GET),
+            new Route(ExpenseController::class, null, 'create', Request::METHOD_POST),
+            new Route(ExpenseController::class, '([0-9]+)', 'update', Request::METHOD_DELETE),
+            new Route(ExpenseController::class, '([0-9]+)', 'delete', Request::METHOD_DELETE),
         ])),
     ])),
 ]);

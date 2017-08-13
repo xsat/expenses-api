@@ -3,9 +3,9 @@
 namespace App\v1_0\Controllers;
 
 /**
- * Class CostController
+ * Class ExpenseController
  */
-class CostController extends BaseAuthorizedController
+class ExpenseController extends BaseAuthorizedController
 {
     /**
      * @param int $costId
