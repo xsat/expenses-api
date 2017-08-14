@@ -9,6 +9,5 @@ class AuthController extends BaseAuthorizedController
 {
     public function logoutAction(): void
     {
-
     }
 }

@@ -12,11 +12,11 @@ use Nen\Router\Route;
 use Nen\Router\Routes;
 
 return new Routes([
-    new Route(IndexController::class, 'main', null, Request::METHOD_GET),
+    new Route(IndexController::class, 'main', null, Request::METHOD_POST),
     new Group('api/1.0', new Routes([
         new Group('auth', new Routes([
-            new Route(PublicAuthController::class, null, 'login', Request::METHOD_POST),
-            new Route(AuthController::class, null, 'logout', Request::METHOD_DELETE),
+            new Route(PublicAuthController::class, 'login', null, Request::METHOD_POST),
+            new Route(AuthController::class, 'logout', null, Request::METHOD_DELETE),
         ])),
         new Group('user', new Routes([
             new Route(UserController::class, null, 'view', Request::METHOD_GET),

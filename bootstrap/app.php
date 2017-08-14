@@ -2,4 +2,8 @@
 
 use Nen\Application;
 
-return new Application(include __DIR__ . '/routes.php');
+try {
+    return new Application(include __DIR__ . '/routes.php');
+} catch (Exception $exception) {
+    var_dump($exception->getMessage());
+}
