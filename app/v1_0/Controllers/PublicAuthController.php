@@ -13,16 +13,14 @@ class PublicAuthController extends BaseController
 {
     public function loginAction(): void
     {
-        $values = new Values($this->request->getPost());
+        $values = new Values($this->request->getPut());
         $validation = new LoginValidation();
 
         if (!$validation->validate($values)) {
-            var_dump($validation->getMessages());
-
-            exit;
+            var_dump(1, $validation->getMessages());
         }
 
-        var_dump($values);exit;
+        var_dump(2, $values);exit;
     }
 
 }

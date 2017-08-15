@@ -1,7 +1,6 @@
 # API v1.0
 
 ## Auth
-
 ### Login
 
 Request:
@@ -16,9 +15,10 @@ Content-Type: application/json
 
 Response:
 ```
+HTTP/1.x 200 OK
 Content-Type: application/json
 {
-    "token": "your new token"
+    "token": "your new {{access_token}}"
 }
 ```
 
@@ -26,17 +26,19 @@ Content-Type: application/json
 
 Request:
 ```
-POST /auth
+DELETE /auth
+Authorization: Bearer {{access_token}}
 ```
 Response:
 ```
+HTTP/1.x 200 OK
 Content-Type: application/json
-{
-    "token": "your new token"
-}
+{}
 ```
 
 ## User
+
+
 
 ## Expense
 

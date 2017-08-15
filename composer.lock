@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "xsat/nen",
-            "version": "v1.4.3",
+            "version": "v1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xsat/nen.git",
-                "reference": "355f739aeeda85bf4ff37de67c68426ea8ff72d1"
+                "reference": "d17144ec2d7eaa213b56e166288c1a7020f1f3ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xsat/nen/zipball/355f739aeeda85bf4ff37de67c68426ea8ff72d1",
-                "reference": "355f739aeeda85bf4ff37de67c68426ea8ff72d1",
+                "url": "https://api.github.com/repos/xsat/nen/zipball/d17144ec2d7eaa213b56e166288c1a7020f1f3ec",
+                "reference": "d17144ec2d7eaa213b56e166288c1a7020f1f3ec",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "issues": "https://github.com/xsat/nen/issues?state=open",
                 "source": "https://github.com/xsat/nen"
             },
-            "time": "2017-08-14T20:25:30+00:00"
+            "time": "2017-08-15T19:16:51+00:00"
         }
     ],
     "packages-dev": [],
