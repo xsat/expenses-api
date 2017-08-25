@@ -8,7 +8,7 @@ Request:
 POST /auth
 Content-Type: application/json
 {
-    "email": "test@email.com",
+    "email": "bob@email.com",
     "password": "12356"
 }
 ```
@@ -18,7 +18,7 @@ Response:
 HTTP/1.x 200 OK
 Content-Type: application/json
 {
-    "token": "your new {{access_token}}"
+    "token": "{{access_token}}"
 }
 ```
 
@@ -47,7 +47,7 @@ POST /user
 Content-Type: application/json
 {
     "name": "Bob",
-    "email": "test@email.com",
+    "email": "bob@email.com",
     "password": "12356"
 }
 ```
@@ -57,7 +57,7 @@ Response:
 HTTP/1.x 200 OK
 Content-Type: application/json
 {
-    "token": "your new {{access_token}}"
+    "token": "{{access_token}}"
 }
 ```
 
@@ -70,7 +70,7 @@ Authorization: Bearer {{access_token}}
 Content-Type: application/json
 {
     "name": "Bob",
-    "email": "test@email.com",
+    "email": "bob@email.com",
     "password": "12356"
 }
 ```
@@ -97,7 +97,7 @@ Content-Type: application/json
 {
     "user_id": 1,
     "name": "Bob",
-    "email": "test@email.com"
+    "email": "bob@email.com"
 }
 ```
 
