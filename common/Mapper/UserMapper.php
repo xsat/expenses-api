@@ -39,7 +39,7 @@ class UserMapper extends Mapper
      *
      * @return User|null
      */
-    public function findOne(string $conditions = '', array $binds = []): ?User
+    public function findFirst(string $conditions = '', array $binds = []): ?User
     {
         $item = $this->connection->selectOne(
             new Select('user', $conditions, $binds)
@@ -91,10 +91,10 @@ class UserMapper extends Mapper
      */
     private function convert(User $user): array
     {
-        return [
+        return [[
             'name' => $user->getName(),
             'email' => $user->getEmail(),
             'password' => $user->getPassword(),
-        ];
+        ]];
     }
 }

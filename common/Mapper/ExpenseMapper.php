@@ -40,7 +40,7 @@ class ExpenseMapper extends Mapper
      *
      * @return Expense|null
      */
-    public function findOne(string $conditions = '', array $binds = []): ?Expense
+    public function findFirst(string $conditions = '', array $binds = []): ?Expense
     {
         $item = $this->connection->selectOne(
             new Select('expense', $conditions, $binds)
@@ -92,11 +92,11 @@ class ExpenseMapper extends Mapper
      */
     private function convert(Expense $expense): array
     {
-        return [
+        return [[
             'user_id' => $expense->getUserId(),
             'cost' => $expense->getCost(),
             'spent_date' => $expense->getSpentDate() ??
                 new Expression('CURRENT_TIMESTAMP()'),
-        ];
+        ]];
     }
 }

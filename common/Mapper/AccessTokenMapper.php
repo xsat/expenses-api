@@ -40,7 +40,7 @@ class AccessTokenMapper extends Mapper
      *
      * @return AccessToken|null
      */
-    public function findOne(string $conditions = '', array $binds = []): ?AccessToken
+    public function findFirst(string $conditions = '', array $binds = []): ?AccessToken
     {
         $item = $this->connection->selectOne(
             new Select('access_token', $conditions, $binds)
@@ -92,11 +92,11 @@ class AccessTokenMapper extends Mapper
      */
     private function convert(AccessToken $accessToken): array
     {
-        return [
+        return [[
             'user_id' => $accessToken->getUserId(),
             'token' => $accessToken->getToken(),
             'expiry_date' => $accessToken->getExpiryDate() ??
                 new Expression('CURRENT_TIMESTAMP()'),
-        ];
+        ]];
     }
 }
