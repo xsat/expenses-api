@@ -37,7 +37,6 @@ class UniqueEmail extends Validator
     )
     {
         parent::__construct($field, $message);
-
         $this->mapper = $mapper;
         $this->user = $user;
     }
@@ -59,6 +58,6 @@ class UniqueEmail extends Validator
 
         $entity = $this->mapper->findFirst($conditions, $binds);
 
-        return $entity != false;
+        return $entity === null;
     }
 }

@@ -32,7 +32,7 @@ class UserValidation extends Validation
             new Presence('email', 'Can\'t be empty'),
             new Email('email', 'Email is not valid'),
             new UniqueEmail('email', $mapper, $user, 'Email is not available'),
-            new Maximum('password', 255, 'The maximum length is 255'),
+            new Maximum('email', 255, 'The maximum length is 255'),
 
             new Presence('password', 'Can\'t be empty'),
             new Minimum('password', 6, 'The minimum length is 6'),

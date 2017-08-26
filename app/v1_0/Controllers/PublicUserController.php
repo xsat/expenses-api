@@ -2,12 +2,9 @@
 
 namespace App\v1_0\Controllers;
 
-use Common\Mapper\AccessTokenMapper;
 use Common\Mapper\UserMapper;
-use Common\Model\AccessToken;
 use Common\Model\User;
 use Common\Validation\UserValidation;
-use Nen\Database\Connection;
 use Nen\Validation\Values;
 
 /**
@@ -17,8 +14,7 @@ class PublicUserController extends Controller
 {
     public function createAction(): void
     {
-        $connection = Connection::getInstance();
-        $mapper = new UserMapper($connection);
+        $mapper = new UserMapper($this->connection);
         $validation = new UserValidation($mapper);
         $values = new Values($this->request->getPut());
 

@@ -4,7 +4,6 @@ namespace App\v1_0\Controllers;
 
 use Common\Mapper\UserMapper;
 use Common\Validation\LoginValidation;
-use Nen\Database\Connection;
 use Nen\Validation\Values;
 
 /**
@@ -22,10 +21,10 @@ class PublicAuthController extends Controller
             exit;
         }
 
-        $connection = Connection::getInstance();
-        $this->user = (new UserMapper($connection))->findFirst('email = :email', [
-            'email' => $values->getValue('email'),
-        ]);
+        $this->user = (new UserMapper($this->connection))
+            ->findFirst('email = :email', [
+                'email' => $values->getValue('email'),
+            ]);
 
         if (!$this->user) {
             var_dump('User not found');
@@ -34,6 +33,7 @@ class PublicAuthController extends Controller
 
         if (!password_verify($values->getValue('password'), $this->user->getPassword())) {
             var_dump('Password is not correct');
+            exit;
         }
 
         $accessToken = $this->auth->createToken($this->user);
