@@ -7,6 +7,7 @@ use Nen\Database\Query\Expression;
 use Nen\Database\Query\Insert;
 use Nen\Database\Query\Select;
 use Nen\Database\Query\Update;
+use Nen\Mapper\Mapper;
 
 /**
  * Class ExpenseMapper
@@ -21,14 +22,14 @@ class ExpenseMapper extends Mapper
      */
     public function find(string $conditions = '', array $binds = []): array
     {
-        $items = $this->connection->selectAll(
+        $items = $this->connection->select(
             new Select('expense', $conditions, $binds)
         );
 
         $modes = [];
 
         foreach ($items as $item) {
-            $modes[] = Expense::fromState($item);
+            $modes[] = new Expense($item);
         }
 
         return $modes;
@@ -42,7 +43,7 @@ class ExpenseMapper extends Mapper
      */
     public function findFirst(string $conditions = '', array $binds = []): ?Expense
     {
-        $item = $this->connection->selectOne(
+        $item = $this->connection->selectFirst(
             new Select('expense', $conditions, $binds)
         );
 
@@ -50,7 +51,7 @@ class ExpenseMapper extends Mapper
             return null;
         }
 
-        return Expense::fromState($item);
+        return new Expense($item);
     }
 
     /**
@@ -73,6 +74,8 @@ class ExpenseMapper extends Mapper
         $this->connection->execute(
             new Insert('expense', $this->convert($expense))
         );
+
+        $expense->setExpenseId($this->connection->lastInsetId());
     }
 
     /**
@@ -92,11 +95,11 @@ class ExpenseMapper extends Mapper
      */
     private function convert(Expense $expense): array
     {
-        return [[
+        return [
             'user_id' => $expense->getUserId(),
             'cost' => $expense->getCost(),
             'spent_date' => $expense->getSpentDate() ??
                 new Expression('CURRENT_TIMESTAMP()'),
-        ]];
+        ];
     }
 }

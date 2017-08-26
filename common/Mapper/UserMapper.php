@@ -6,6 +6,7 @@ use Common\Model\User;
 use Nen\Database\Query\Insert;
 use Nen\Database\Query\Select;
 use Nen\Database\Query\Update;
+use Nen\Mapper\Mapper;
 
 /**
  * Class UserMapper
@@ -20,14 +21,14 @@ class UserMapper extends Mapper
      */
     public function find(string $conditions = '', array $binds = []): array
     {
-        $items = $this->connection->selectAll(
+        $items = $this->connection->select(
             new Select('user', $conditions, $binds)
         );
 
         $modes = [];
 
         foreach ($items as $item) {
-            $modes[] = User::fromState($item);
+            $modes[] = new User($item);
         }
 
         return $modes;
@@ -41,7 +42,7 @@ class UserMapper extends Mapper
      */
     public function findFirst(string $conditions = '', array $binds = []): ?User
     {
-        $item = $this->connection->selectOne(
+        $item = $this->connection->selectFirst(
             new Select('user', $conditions, $binds)
         );
 
@@ -49,7 +50,7 @@ class UserMapper extends Mapper
             return null;
         }
 
-        return User::fromState($item);
+        return new User($item);
     }
 
     /**
@@ -72,6 +73,8 @@ class UserMapper extends Mapper
         $this->connection->execute(
             new Insert('user', $this->convert($user))
         );
+
+        $user->setUserId($this->connection->lastInsetId());
     }
 
     /**
@@ -91,10 +94,10 @@ class UserMapper extends Mapper
      */
     private function convert(User $user): array
     {
-        return [[
+        return [
             'name' => $user->getName(),
             'email' => $user->getEmail(),
             'password' => $user->getPassword(),
-        ]];
+        ];
     }
 }

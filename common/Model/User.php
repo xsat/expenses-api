@@ -2,10 +2,12 @@
 
 namespace Common\Model;
 
+use Nen\Model\Model;
+
 /**
  * Class User
  */
-class User implements ModelInterface
+class User extends Model
 {
     /**
      * @var int
@@ -26,27 +28,6 @@ class User implements ModelInterface
      * @var string
      */
     private $password;
-
-    /**
-     * User constructor.
-     *
-     * @param int|null $user_id
-     * @param string $name
-     * @param string $email
-     * @param string $password
-     */
-    public function __construct(
-        ?int $user_id,
-        string $name,
-        string $email,
-        string $password
-    )
-    {
-        $this->setUserId($user_id);
-        $this->setName($name);
-        $this->setEmail($email);
-        $this->setPassword($password);
-    }
 
     /**
      * @return int|null
@@ -110,20 +91,5 @@ class User implements ModelInterface
     public function setPassword(string $password)
     {
         $this->password = $password;
-    }
-
-    /**
-     * @param array $state
-     *
-     * @return User|ModelInterface
-     */
-    public static function fromState(array $state): ModelInterface
-    {
-        return new User(
-            $state['user_id'],
-            $state['name'],
-            $state['email'],
-            $state['password']
-        );
     }
 }

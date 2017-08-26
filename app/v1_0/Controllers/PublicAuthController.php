@@ -26,8 +26,7 @@ class PublicAuthController extends BaseController
         }
 
         $connection = Connection::getInstance();
-        $mapper = new UserMapper($connection);
-        $user = $mapper->findFirst('email = :email', [
+        $user = (new UserMapper($connection))->findFirst('email = :email', [
             'email' => $values->getValue('email'),
         ]);
 
@@ -41,11 +40,13 @@ class PublicAuthController extends BaseController
             exit;
         }
 
-        $mapper = new AccessTokenMapper($connection);
-        $accessToken = new AccessToken(
-            null,
-            $user->getUserId(),
-            md5(random_bytes(100))
-        );
+        $accessToken = new AccessToken();
+        $accessToken->setUserId($user->getUserId());
+        $accessToken->setToken(md5(random_bytes(100)));
+        (new AccessTokenMapper($connection))->create($accessToken);
+
+        $this->response->setJsonContent([
+            'token' => $accessToken->getToken(),
+        ]);
     }
 }

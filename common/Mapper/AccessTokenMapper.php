@@ -7,6 +7,7 @@ use Nen\Database\Query\Expression;
 use Nen\Database\Query\Insert;
 use Nen\Database\Query\Select;
 use Nen\Database\Query\Update;
+use Nen\Mapper\Mapper;
 
 /**
  * Class AccessTokenMapper
@@ -21,14 +22,14 @@ class AccessTokenMapper extends Mapper
      */
     public function find(string $conditions = '', array $binds = []): array
     {
-        $items = $this->connection->selectAll(
+        $items = $this->connection->select(
             new Select('access_token', $conditions, $binds)
         );
 
         $modes = [];
 
         foreach ($items as $item) {
-            $modes[] = AccessToken::fromState($item);
+            $modes[] = new AccessToken($item);
         }
 
         return $modes;
@@ -42,7 +43,7 @@ class AccessTokenMapper extends Mapper
      */
     public function findFirst(string $conditions = '', array $binds = []): ?AccessToken
     {
-        $item = $this->connection->selectOne(
+        $item = $this->connection->selectFirst(
             new Select('access_token', $conditions, $binds)
         );
 
@@ -50,7 +51,7 @@ class AccessTokenMapper extends Mapper
             return null;
         }
 
-        return AccessToken::fromState($item);
+        return new AccessToken($item);
     }
 
     /**
@@ -73,6 +74,8 @@ class AccessTokenMapper extends Mapper
         $this->connection->execute(
             new Insert('access_token', $this->convert($accessToken))
         );
+
+        $accessToken->setAccessTokenId($this->connection->lastInsetId());
     }
 
     /**
@@ -92,11 +95,11 @@ class AccessTokenMapper extends Mapper
      */
     private function convert(AccessToken $accessToken): array
     {
-        return [[
+        return [
             'user_id' => $accessToken->getUserId(),
             'token' => $accessToken->getToken(),
             'expiry_date' => $accessToken->getExpiryDate() ??
                 new Expression('CURRENT_TIMESTAMP()'),
-        ]];
+        ];
     }
 }

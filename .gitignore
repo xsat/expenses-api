@@ -4,5 +4,11 @@
 # composer vendor dir
 /vendor
 
+# composer lock file
+composer.lock
+
+# composer itself is not needed
+composer.phar
+
 # NPM packages
 .env
