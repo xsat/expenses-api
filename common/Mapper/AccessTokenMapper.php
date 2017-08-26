@@ -3,6 +3,7 @@
 namespace Common\Mapper;
 
 use Common\Model\AccessToken;
+use Nen\Database\Query\Delete;
 use Nen\Database\Query\Expression;
 use Nen\Database\Query\Insert;
 use Nen\Database\Query\Select;
@@ -99,7 +100,19 @@ class AccessTokenMapper extends Mapper
             'user_id' => $accessToken->getUserId(),
             'token' => $accessToken->getToken(),
             'expiry_date' => $accessToken->getExpiryDate() ??
-                new Expression('CURRENT_TIMESTAMP()'),
+                new Expression('CURRENT_TIMESTAMP() + INTERVAL 1 HOUR'),
         ];
+    }
+
+    /**
+     * @param AccessToken $accessToken
+     */
+    public function delete(AccessToken $accessToken): void
+    {
+        $this->connection->execute(
+            new Delete('access_token', 'access_token_id = :access_token_id', [
+                'access_token_id' => $accessToken->getAccessTokenId(),
+            ])
+        );
     }
 }

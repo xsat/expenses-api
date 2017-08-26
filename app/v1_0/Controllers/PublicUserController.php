@@ -16,7 +16,7 @@ class PublicUserController extends Controller
     {
         $mapper = new UserMapper($this->connection);
         $validation = new UserValidation($mapper);
-        $values = new Values($this->request->getPut());
+        $values = new Values($this->request->getPut() ?? []);
 
         if (!$validation->validate($values)) {
             var_dump($validation->getMessages());

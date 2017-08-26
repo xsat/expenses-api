@@ -13,7 +13,7 @@ class PublicAuthController extends Controller
 {
     public function loginAction(): void
     {
-        $values = new Values($this->request->getPut());
+        $values = new Values($this->request->getPut() ?? []);
         $validation = new LoginValidation();
 
         if (!$validation->validate($values)) {

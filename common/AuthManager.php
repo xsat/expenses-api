@@ -8,7 +8,6 @@ use Common\Model\AccessToken;
 use Common\Model\User;
 use Nen\Database\Query\Expression;
 use Nen\Http\RequestInterface;
-use Nen\Http\ResponseInterface;
 
 /**
  * Class AuthManager
@@ -82,6 +81,15 @@ class AuthManager
         );
 
         return $this->accessToken !== null;
+    }
+
+    public function deleteToken(): void
+    {
+        if (!$this->accessToken) {
+            return;
+        }
+
+        $this->tokenMapper->delete($this->accessToken);
     }
 
     /**

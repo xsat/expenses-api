@@ -21,14 +21,14 @@ return new Routes([
         new Group('user', new Routes([
             new Route(UserController::class, 'view', null, Request::METHOD_GET),
             new Route(PublicUserController::class, 'create', null, Request::METHOD_POST),
-            new Route(UserController::class, 'update', null, Request::METHOD_DELETE),
+            new Route(UserController::class, 'update', null, Request::METHOD_PUT),
             new Route(UserController::class, 'delete', null, Request::METHOD_DELETE),
         ])),
         new Group('expense', new Routes([
             new Route(ExpenseController::class, 'list', null, Request::METHOD_GET),
             new Route(ExpenseController::class, 'view', '([0-9]+)', Request::METHOD_GET),
             new Route(ExpenseController::class, 'create', null, Request::METHOD_POST),
-            new Route(ExpenseController::class, 'update', '([0-9]+)', Request::METHOD_DELETE),
+            new Route(ExpenseController::class, 'update', '([0-9]+)', Request::METHOD_PUT),
             new Route(ExpenseController::class, 'delete', '([0-9]+)', Request::METHOD_DELETE),
         ])),
     ])),

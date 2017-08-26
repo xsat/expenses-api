@@ -3,6 +3,7 @@
 namespace Common\Mapper;
 
 use Common\Model\Expense;
+use Nen\Database\Query\Delete;
 use Nen\Database\Query\Expression;
 use Nen\Database\Query\Insert;
 use Nen\Database\Query\Select;
@@ -101,5 +102,17 @@ class ExpenseMapper extends Mapper
             'spent_date' => $expense->getSpentDate() ??
                 new Expression('CURRENT_TIMESTAMP()'),
         ];
+    }
+
+    /**
+     * @param Expense $accessToken
+     */
+    public function delete(Expense $expense): void
+    {
+        $this->connection->execute(
+            new Delete('expense', 'expense_id = :expense_id', [
+                'expense_id' => $expense->getExpenseId(),
+            ])
+        );
     }
 }

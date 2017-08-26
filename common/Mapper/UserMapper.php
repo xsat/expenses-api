@@ -3,6 +3,7 @@
 namespace Common\Mapper;
 
 use Common\Model\User;
+use Nen\Database\Query\Delete;
 use Nen\Database\Query\Insert;
 use Nen\Database\Query\Select;
 use Nen\Database\Query\Update;
@@ -99,5 +100,17 @@ class UserMapper extends Mapper
             'email' => $user->getEmail(),
             'password' => $user->getPassword(),
         ];
+    }
+
+    /**
+     * @param User $user
+     */
+    public function delete(User $user): void
+    {
+        $this->connection->execute(
+            new Delete('user', 'user_id = :user_id', [
+                'user_id' => $user->getUserId(),
+            ])
+        );
     }
 }
