@@ -5,7 +5,7 @@ namespace App\v1_0\Controllers;
 /**
  * Class UserController
  */
-class UserController extends BaseAuthorizedController
+class UserController extends PrivateController
 {
     public function viewAction(): void
     {

@@ -2,7 +2,6 @@
 
 namespace App\v1_0\Controllers;
 
-use App\Controllers\BaseController;
 use Common\Mapper\AccessTokenMapper;
 use Common\Mapper\UserMapper;
 use Common\Model\AccessToken;
@@ -14,7 +13,7 @@ use Nen\Validation\Values;
 /**
  * Class PublicUserController
  */
-class PublicUserController extends BaseController
+class PublicUserController extends Controller
 {
     public function createAction(): void
     {
@@ -28,19 +27,15 @@ class PublicUserController extends BaseController
             exit;
         }
 
-        $user = new User();
-
-        $user->setName($values->getValue('name'));
-        $user->setEmail($values->getValue('email'));
-        $user->setPassword(
+        $this->user = new User();
+        $this->user->setName($values->getValue('name'));
+        $this->user->setEmail($values->getValue('email'));
+        $this->user->setPassword(
             password_hash($values->getValue('password'), PASSWORD_BCRYPT)
         );
-        $mapper->create($user);
+        $mapper->create($this->user);
 
-        $accessToken = new AccessToken();
-        $accessToken->setUserId($user->getUserId());
-        $accessToken->setToken(md5(random_bytes(100)));
-        (new AccessTokenMapper($connection))->create($accessToken);
+        $accessToken = $this->auth->createToken($this->user);
 
         $this->response->setJsonContent([
             'token' => $accessToken->getToken(),

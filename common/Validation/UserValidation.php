@@ -18,6 +18,9 @@ class UserValidation extends Validation
 {
     /**
      * UserValidation constructor.
+     *
+     * @param UserMapper $mapper
+     * @param User|null $user
      */
     public function __construct(UserMapper $mapper, ?User $user = null)
     {

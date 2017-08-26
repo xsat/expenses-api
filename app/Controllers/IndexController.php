@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
+use Nen\Web\Controller;
+
 /**
  * Class IndexController
  */
-class IndexController extends BaseController
+class IndexController extends Controller
 {
     /**
      * Test content response

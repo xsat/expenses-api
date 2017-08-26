@@ -2,10 +2,7 @@
 
 namespace App\v1_0\Controllers;
 
-use App\Controllers\BaseController;
-use Common\Mapper\AccessTokenMapper;
 use Common\Mapper\UserMapper;
-use Common\Model\AccessToken;
 use Common\Validation\LoginValidation;
 use Nen\Database\Connection;
 use Nen\Validation\Values;
@@ -13,7 +10,7 @@ use Nen\Validation\Values;
 /**
  * Class PublicAuthController
  */
-class PublicAuthController extends BaseController
+class PublicAuthController extends Controller
 {
     public function loginAction(): void
     {
@@ -26,24 +23,20 @@ class PublicAuthController extends BaseController
         }
 
         $connection = Connection::getInstance();
-        $user = (new UserMapper($connection))->findFirst('email = :email', [
+        $this->user = (new UserMapper($connection))->findFirst('email = :email', [
             'email' => $values->getValue('email'),
         ]);
 
-        if (!$user) {
+        if (!$this->user) {
             var_dump('User not found');
             exit;
         }
 
-        if (!password_verify($values->getValue('password'), $user->getPassword())) {
+        if (!password_verify($values->getValue('password'), $this->user->getPassword())) {
             var_dump('Password is not correct');
-            exit;
         }
 
-        $accessToken = new AccessToken();
-        $accessToken->setUserId($user->getUserId());
-        $accessToken->setToken(md5(random_bytes(100)));
-        (new AccessTokenMapper($connection))->create($accessToken);
+        $accessToken = $this->auth->createToken($this->user);
 
         $this->response->setJsonContent([
             'token' => $accessToken->getToken(),

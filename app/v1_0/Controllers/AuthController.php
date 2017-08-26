@@ -5,7 +5,7 @@ namespace App\v1_0\Controllers;
 /**
  * Class AuthController
  */
-class AuthController extends BaseAuthorizedController
+class AuthController extends PrivateController
 {
     public function logoutAction(): void
     {
