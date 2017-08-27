@@ -8,7 +8,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 define('DATA_DIR', __DIR__ . '/../data/');
 
 use Dotenv\Dotenv;
+use Nen\Application;
 
 (new Dotenv(__DIR__ . '/../'))->load();
 
-return require __DIR__ . '/app.php';
+return new Application(include __DIR__ . '/routes.php');
