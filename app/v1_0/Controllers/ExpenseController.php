@@ -2,12 +2,12 @@
 
 namespace App\v1_0\Controllers;
 
+use Common\Binder\ExpenseBinder;
 use Common\Mapper\ExpenseMapper;
 use Common\Model\Expense;
 use Common\Validation\ExpenseValidation;
 use Nen\Exception\NotFoundException;
 use Nen\Exception\ValidationException;
-use Nen\Validation\Values;
 
 /**
  * Class ExpenseController
@@ -58,17 +58,17 @@ class ExpenseController extends PrivateController
     public function createAction(): void
     {
         $validation = new ExpenseValidation();
-        $values = new Values($this->request->getPut() ?? []);
+        $binder = new ExpenseBinder($this->request->getPut() ?? []);
 
-        if (!$validation->validate($values)) {
+        if (!$validation->validate($binder)) {
             throw new ValidationException($validation);
         }
 
         $expense = new Expense();
-        $expense->setNote($values->getValue('note'));
+        $expense->setNote($binder->getNote());
         $expense->setUserId($this->user->getUserId());
-        $expense->setCost($values->getValue('cost'));
-        $expense->setSpentDate($values->getValue('spent_date'));
+        $expense->setCost($binder->getCost());
+        $expense->setSpentDate($binder->getSpentDate());
 
         (new ExpenseMapper($this->connection))->create($expense);
 
@@ -81,7 +81,7 @@ class ExpenseController extends PrivateController
         ]);
     }
 
-    /**
+    /**s
      * @param int $expense_id
      *
      * @throws NotFoundException
@@ -103,18 +103,18 @@ class ExpenseController extends PrivateController
         }
 
         $validation = new ExpenseValidation();
-        $values = new Values($this->request->getPut() ?? []);
+        $binder = new ExpenseBinder($this->request->getPut() ?? []);
 
-        if (!$validation->validate($values)) {
+        if (!$validation->validate($binder)) {
             throw new ValidationException($validation);
         }
 
         $expense->setNote(
-            $values->getValue('note') ?? $expense->getNote()
+            $binder->getNote() ?? $expense->getNote()
         );
-        $expense->setCost($values->getValue('cost'));
+        $expense->setCost($binder->getCost());
         $expense->setSpentDate(
-            $values->getValue('spent_date') ?? $expense->getSpentDate()
+            $binder->getSpentDate() ?? $expense->getSpentDate()
         );
 
         $mapper->update($expense);

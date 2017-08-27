@@ -2,11 +2,11 @@
 
 namespace App\v1_0\Controllers;
 
+use Common\Binder\UserBinder;
 use Common\Mapper\UserMapper;
 use Common\Model\User;
 use Common\Validation\UserValidation;
 use Nen\Exception\ValidationException;
-use Nen\Validation\Values;
 
 /**
  * Class PublicUserController
@@ -20,17 +20,17 @@ class PublicUserController extends Controller
     {
         $mapper = new UserMapper($this->connection);
         $validation = new UserValidation($mapper);
-        $values = new Values($this->request->getPut() ?? []);
+        $binder = new UserBinder($this->request->getPut() ?? []);
 
-        if (!$validation->validate($values)) {
+        if (!$validation->validate($binder)) {
             throw new ValidationException($validation);
         }
 
         $this->user = new User();
-        $this->user->setName($values->getValue('name'));
-        $this->user->setEmail($values->getValue('email'));
+        $this->user->setName($binder->getName());
+        $this->user->setEmail($binder->getEmail());
         $this->user->setPassword(
-            password_hash($values->getValue('password'), PASSWORD_BCRYPT)
+            password_hash($binder->getPassword(), PASSWORD_BCRYPT)
         );
         $mapper->create($this->user);
 
