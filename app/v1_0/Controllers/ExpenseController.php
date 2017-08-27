@@ -3,9 +3,11 @@
 namespace App\v1_0\Controllers;
 
 use Common\Binder\ExpenseBinder;
+use Common\Binder\ListBinder;
 use Common\Mapper\ExpenseMapper;
 use Common\Model\Expense;
 use Common\Validation\ExpenseValidation;
+use Common\Validation\ListValidation;
 use Nen\Exception\NotFoundException;
 use Nen\Exception\ValidationException;
 
@@ -14,13 +16,25 @@ use Nen\Exception\ValidationException;
  */
 class ExpenseController extends PrivateController
 {
+    /**
+     * @throws ValidationException
+     */
     public function listAction(): void
     {
+        $validation = new ListValidation();
+        $binder = new ListBinder($this->request->getQuery() ?? []);
+
+        if (!$validation->validate($binder)) {
+            throw new ValidationException($validation);
+        }
+
+        $mapper = new ExpenseMapper($this->connection);
+
         $this->response([
-            'offset' => 0,
-            'limit' => 10,
-            'total' => 0,
-            'list' => [],
+            'offset' => $binder->getOffset(),
+            'limit' => $binder->getLimit(),
+            'total' => $mapper->getTotal($binder),
+            'list' => $mapper->getList($binder),
         ]);
     }
 

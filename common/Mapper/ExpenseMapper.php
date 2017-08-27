@@ -2,6 +2,7 @@
 
 namespace Common\Mapper;
 
+use Common\Binder\ListBinder;
 use Common\Model\Expense;
 use Nen\Database\Query\Delete;
 use Nen\Database\Query\Expression;
@@ -116,5 +117,23 @@ class ExpenseMapper extends Mapper
                 'expense_id' => $expense->getExpenseId(),
             ])
         );
+    }
+
+    /**
+     * @param ListBinder $binder
+     *
+     * @return array
+     */
+    public function getList(ListBinder $binder): array {
+        return [];
+    }
+
+    /**
+     * @param ListBinder $binder
+     *
+     * @return int
+     */
+    public function getTotal(ListBinder $binder): int {
+        return 0;
     }
 }
