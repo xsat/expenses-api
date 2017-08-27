@@ -8,7 +8,6 @@ use Common\Validation\ExpenseValidation;
 use Nen\Exception\NotFoundException;
 use Nen\Exception\ValidationException;
 use Nen\Validation\Values;
-use stdClass;
 
 /**
  * Class ExpenseController
@@ -17,7 +16,7 @@ class ExpenseController extends PrivateController
 {
     public function listAction(): void
     {
-        $this->response->setJsonContent(new stdClass());
+        $this->response();
     }
 
     /**
@@ -39,7 +38,7 @@ class ExpenseController extends PrivateController
             throw new NotFoundException('Expense not found');
         }
 
-        $this->response->setJsonContent([
+        $this->response([
             'expense_id' => $expense->getExpenseId(),
             'user_id' => $expense->getUserId(),
             'note' => $expense->getNote(),
@@ -68,7 +67,7 @@ class ExpenseController extends PrivateController
 
         (new ExpenseMapper($this->connection))->create($expense);
 
-        $this->response->setJsonContent([
+        $this->response([
             'expense_id' => $expense->getExpenseId(),
             'user_id' => $expense->getUserId(),
             'note' => $expense->getNote(),
@@ -115,7 +114,7 @@ class ExpenseController extends PrivateController
 
         $mapper->update($expense);
 
-        $this->response->setJsonContent(new stdClass());
+        $this->response();
     }
 
     /**
@@ -140,6 +139,6 @@ class ExpenseController extends PrivateController
 
         $mapper->delete($expense);
 
-        $this->response->setJsonContent(new stdClass());
+        $this->response();
     }
 }

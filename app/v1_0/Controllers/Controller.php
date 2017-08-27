@@ -51,4 +51,12 @@ abstract class Controller extends NenController
             new UserMapper($this->connection)
         );
     }
+
+    /**
+     * @param array|null $data
+     */
+    protected final function response(array $data = null): void
+    {
+        $this->response->setJsonContent($data ?? new \stdClass());
+    }
 }

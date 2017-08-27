@@ -6,7 +6,6 @@ use Common\Mapper\UserMapper;
 use Common\Validation\UserValidation;
 use Nen\Exception\ValidationException;
 use Nen\Validation\Values;
-use stdClass;
 
 /**
  * Class UserController
@@ -15,7 +14,7 @@ class UserController extends PrivateController
 {
     public function viewAction(): void
     {
-        $this->response->setJsonContent([
+        $this->response([
             'user_id' => $this->user->getUserId(),
             'name' => $this->user->getName(),
             'email' => $this->user->getEmail(),
@@ -42,13 +41,13 @@ class UserController extends PrivateController
         );
         $mapper->update($this->user);
 
-        $this->response->setJsonContent(new stdClass());
+        $this->response();
     }
 
     public function deleteAction(): void
     {
         (new UserMapper($this->connection))->delete($this->user);
 
-        $this->response->setJsonContent(new stdClass());
+        $this->response();
     }
 }

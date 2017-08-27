@@ -41,7 +41,7 @@ class PublicAuthController extends Controller
 
         $accessToken = $this->auth->createToken($this->user);
 
-        $this->response->setJsonContent([
+        $this->response([
             'token' => $accessToken->getToken(),
         ]);
     }
