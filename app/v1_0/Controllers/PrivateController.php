@@ -18,6 +18,8 @@ abstract class PrivateController extends Controller
      * @param ResponseInterface $response
      *
      * @throws UnauthorizedException
+     *
+     * @todo Write friendly error messages
      */
     public function __construct(
         RequestInterface $request,

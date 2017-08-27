@@ -18,6 +18,8 @@ class ExpenseController extends PrivateController
 {
     /**
      * @throws ValidationException
+     *
+     * @todo Add formatters
      */
     public function listAction(): void
     {

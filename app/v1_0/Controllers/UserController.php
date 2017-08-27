@@ -2,10 +2,10 @@
 
 namespace App\v1_0\Controllers;
 
+use Common\Binder\UserBinder;
 use Common\Mapper\UserMapper;
 use Common\Validation\UserValidation;
 use Nen\Exception\ValidationException;
-use Common\Binder\UserBinder;
 
 /**
  * Class UserController
@@ -23,6 +23,8 @@ class UserController extends PrivateController
 
     /**
      * @throws ValidationException
+     *
+     * @todo Separate method into password and other
      */
     public function updateAction(): void
     {

@@ -16,6 +16,8 @@ class PublicAuthController extends Controller
     /**
      * @throws ValidationException
      * @throws ForbiddenException
+     *
+     * @todo Create password manager
      */
     public function loginAction(): void
     {

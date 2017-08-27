@@ -20,6 +20,8 @@ class AccessTokenMapper extends Mapper
      * @param array $binds
      *
      * @return AccessToken[]
+     *
+     * @todo Replace * in list of fields
      */
     public function find(string $conditions = '', array $binds = []): array
     {
