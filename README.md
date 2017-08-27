@@ -117,3 +117,104 @@ Content-Type: application/json
 ```
 
 ## 3. Expense
+
+### 3.1. Create expense
+
+Request:
+```
+POST /expense
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+{
+    "note": "I bought an espresso", // optional
+    "cost": 15.00,
+    "spent_date": "2017-01-01 12:12:12" // optional
+}
+```
+
+Response:
+```
+HTTP/1.x 200 OK
+Content-Type: application/json
+{
+    "expense_id": 2,
+    "user_id": 17,
+    "note": "I bought an espresso",
+    "cost": 15,
+    "spent_date": "2017-01-01 12:12:12"
+}
+```
+
+### 3.2. Update expense
+
+Request:
+```
+PUT /expense/{{expense_id}}
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+{
+    "note": "I bought an espresso", // optional
+    "cost": 20.00,
+    "spent_date": "2017-01-01 12:12:12" // optional
+}
+```
+
+Response:
+```
+HTTP/1.x 200 OK
+Content-Type: application/json
+{}
+```
+
+
+### 3.3. View expense
+
+Request:
+```
+GET /expense/{{expense_id}}
+Authorization: Bearer {{access_token}}
+```
+
+Response:
+```
+HTTP/1.x 200 OK
+Content-Type: application/json
+{
+    "expense_id": 2,
+    "user_id": 17,
+    "note": "I bought an espresso",
+    "cost": 15,
+    "spent_date": "2017-01-01 12:12:12"
+}
+```
+
+### 3.4. Delete expense
+
+Request:
+```
+DELETE /expense/{{expense_id}}
+Authorization: Bearer {{access_token}}
+```
+
+Response:
+```
+HTTP/1.x 200 OK
+Content-Type: application/json
+{}
+```
+
+
+### 3.4. View expense list
+
+Request:
+```
+GET /expense
+Authorization: Bearer {{access_token}}
+```
+
+Response:
+```
+HTTP/1.x 200 OK
+Content-Type: application/json
+{}
+```

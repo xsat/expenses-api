@@ -98,6 +98,8 @@ class ExpenseMapper extends Mapper
     {
         return [
             'user_id' => $expense->getUserId(),
+            'note' => $expense->getNote() ??
+                new Expression('NULL'),
             'cost' => $expense->getCost(),
             'spent_date' => $expense->getSpentDate() ??
                 new Expression('CURRENT_TIMESTAMP()'),

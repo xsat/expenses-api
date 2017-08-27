@@ -20,6 +20,11 @@ class Expense extends Model
     private $user_id;
 
     /**
+     * @var string
+     */
+    private $note;
+
+    /**
      * @var float
      */
     private $cost = 0.00;
@@ -59,6 +64,22 @@ class Expense extends Model
     public function setUserId(int $user_id)
     {
         $this->user_id = $user_id;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param null|string $description
+     */
+    public function setNote(?string $description)
+    {
+        $this->note = $description;
     }
 
     /**

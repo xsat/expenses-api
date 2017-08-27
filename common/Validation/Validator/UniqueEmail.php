@@ -24,6 +24,7 @@ class UniqueEmail extends Validator
 
     /**
      * UniqueEmail constructor.
+     *
      * @param string $field
      * @param UserMapper $mapper
      * @param User|null $user
@@ -37,6 +38,7 @@ class UniqueEmail extends Validator
     )
     {
         parent::__construct($field, $message);
+
         $this->mapper = $mapper;
         $this->user = $user;
     }
