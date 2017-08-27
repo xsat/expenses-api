@@ -29,12 +29,24 @@ class ExpenseController extends PrivateController
         }
 
         $mapper = new ExpenseMapper($this->connection);
+        $expenses = $mapper->getList($binder);
+        $list = [];
+
+        foreach ($expenses as $expense) {
+            $list[] = [
+                'expense_id' => $expense->getExpenseId(),
+                'user_id' => $expense->getUserId(),
+                'note' => $expense->getNote(),
+                'cost' => $expense->getCost(),
+                'spent_date' => $expense->getSpentDate(),
+            ];
+        }
 
         $this->response([
             'offset' => $binder->getOffset(),
             'limit' => $binder->getLimit(),
             'total' => $mapper->getTotal($binder),
-            'list' => $mapper->getList($binder),
+            'list' => $list,
         ]);
     }
 

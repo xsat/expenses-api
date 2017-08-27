@@ -7,6 +7,7 @@ use Common\Model\Expense;
 use Nen\Database\Query\Delete;
 use Nen\Database\Query\Expression;
 use Nen\Database\Query\Insert;
+use Nen\Database\Query\Query;
 use Nen\Database\Query\Select;
 use Nen\Database\Query\Update;
 use Nen\Mapper\Mapper;
@@ -122,10 +123,20 @@ class ExpenseMapper extends Mapper
     /**
      * @param ListBinder $binder
      *
-     * @return array
+     * @return Expense[]
      */
-    public function getList(ListBinder $binder): array {
-        return [];
+    public function getList(ListBinder $binder): array
+    {
+        return $this->find(
+            $this->getConditions($binder) .
+            ' ORDER BY :order ' . strtoupper($binder->getSort()) .
+            ' LIMIT :limit OFFSET :offset',
+            $this->getBinds($binder) + [
+                'order' => $binder->getOrder(),
+                'limit' => $binder->getLimit(),
+                'offset' => $binder->getOffset(),
+            ]
+        );
     }
 
     /**
@@ -133,7 +144,69 @@ class ExpenseMapper extends Mapper
      *
      * @return int
      */
-    public function getTotal(ListBinder $binder): int {
-        return 0;
+    public function getTotal(ListBinder $binder): int
+    {
+        $result = $this->connection->selectFirst(
+            new Query(
+                'SELECT COUNT(`expense_id`) AS `count` 
+                 FROM `expense` 
+                 WHERE ' . $this->getConditions($binder),
+                $this->getBinds($binder)
+            )
+        );
+
+        return $result['count'] ?? 0;
+    }
+
+    /**
+     * @param ListBinder $binder
+     *
+     * @return string
+     */
+    private function getConditions(ListBinder $binder): string
+    {
+        $conditions = [];
+
+        if ($binder->getSearch()) {
+            $conditions[] = 'note LIKE %:search%';
+        }
+
+        if ($binder->getFromDate()) {
+            $conditions[] = 'spent_date >= :from_date';
+        }
+
+        if ($binder->getToDate()) {
+            $conditions[] = 'spent_date <= :to_date';
+        }
+
+        if (!$conditions) {
+            $conditions[] = 1;
+        }
+
+        return implode(' AND ', $conditions);
+    }
+
+    /**
+     * @param ListBinder $binder
+     *
+     * @return array
+     */
+    public function getBinds(ListBinder $binder): array
+    {
+        $binds = [];
+
+        if ($binder->getSearch()) {
+            $binds['search'] = $binder->getSearch();
+        }
+
+        if ($binder->getFromDate()) {
+            $binds['from_date'] = $binder->getFromDate();
+        }
+
+        if ($binder->getToDate()) {
+            $binds['to_date'] = $binder->getToDate();
+        }
+
+        return $binds;
     }
 }

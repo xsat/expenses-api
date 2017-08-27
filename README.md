@@ -216,5 +216,20 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
-{}
+{
+    "offset": 0,
+    "limit": 10,
+    "total": 12,
+    "list": [
+        {
+            "expense_id": 7,
+            "user_id": 34,
+            "note": "I bought an espresso",
+            "cost": 15,
+            "spent_date": "2017-01-01 12:12:12"
+        },
+        
+        ...
+    ]
+}
 ```
