@@ -107,7 +107,7 @@ class ExpenseMapper extends Mapper
     }
 
     /**
-     * @param Expense $accessToken
+     * @param Expense $expense
      */
     public function delete(Expense $expense): void
     {
