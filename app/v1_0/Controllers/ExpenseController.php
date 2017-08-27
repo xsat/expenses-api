@@ -16,7 +16,12 @@ class ExpenseController extends PrivateController
 {
     public function listAction(): void
     {
-        $this->response();
+        $this->response([
+            'offset' => 0,
+            'limit' => 10,
+            'total' => 0,
+            'list' => [],
+        ]);
     }
 
     /**

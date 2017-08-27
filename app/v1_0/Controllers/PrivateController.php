@@ -27,7 +27,7 @@ abstract class PrivateController extends Controller
         parent::__construct($request, $response);
 
         if (!$this->auth->checkToken($request)) {
-            throw new UnauthorizedException('Invalid access toke');
+            throw new UnauthorizedException('Invalid access token');
         }
 
         $this->user = $this->auth->getUser();
