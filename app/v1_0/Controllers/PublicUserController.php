@@ -5,6 +5,7 @@ namespace App\v1_0\Controllers;
 use Common\Mapper\UserMapper;
 use Common\Model\User;
 use Common\Validation\UserValidation;
+use Nen\Exception\ValidationException;
 use Nen\Validation\Values;
 
 /**
@@ -12,6 +13,9 @@ use Nen\Validation\Values;
  */
 class PublicUserController extends Controller
 {
+    /**
+     * @throws ValidationException
+     */
     public function createAction(): void
     {
         $mapper = new UserMapper($this->connection);
@@ -19,8 +23,7 @@ class PublicUserController extends Controller
         $values = new Values($this->request->getPut() ?? []);
 
         if (!$validation->validate($values)) {
-            var_dump($validation->getMessages());
-            exit;
+            throw new ValidationException($validation);
         }
 
         $this->user = new User();

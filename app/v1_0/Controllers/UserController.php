@@ -4,6 +4,7 @@ namespace App\v1_0\Controllers;
 
 use Common\Mapper\UserMapper;
 use Common\Validation\UserValidation;
+use Nen\Exception\ValidationException;
 use Nen\Validation\Values;
 use stdClass;
 
@@ -21,6 +22,9 @@ class UserController extends PrivateController
         ]);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function updateAction(): void
     {
         $mapper = new UserMapper($this->connection);
@@ -28,8 +32,7 @@ class UserController extends PrivateController
         $values = new Values($this->request->getPut() ?? []);
 
         if (!$validation->validate($values)) {
-            var_dump($validation->getMessages());
-            exit;
+            throw new ValidationException($validation);
         }
 
         $this->user->setName($values->getValue('name'));

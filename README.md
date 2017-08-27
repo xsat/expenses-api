@@ -204,7 +204,7 @@ Content-Type: application/json
 ```
 
 
-### 3.4. View expense list
+### 3.5. View expense list
 
 Request:
 ```

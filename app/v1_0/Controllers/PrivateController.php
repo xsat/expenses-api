@@ -2,6 +2,7 @@
 
 namespace App\v1_0\Controllers;
 
+use Nen\Exception\UnauthorizedException;
 use Nen\Http\RequestInterface;
 use Nen\Http\ResponseInterface;
 
@@ -15,6 +16,8 @@ abstract class PrivateController extends Controller
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
+     *
+     * @throws UnauthorizedException
      */
     public function __construct(
         RequestInterface $request,
@@ -24,8 +27,7 @@ abstract class PrivateController extends Controller
         parent::__construct($request, $response);
 
         if (!$this->auth->checkToken($request)) {
-            var_dump('Invalid access token');
-            exit;
+            throw new UnauthorizedException('Invalid access toke');
         }
 
         $this->user = $this->auth->getUser();

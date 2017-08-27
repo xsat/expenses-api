@@ -5,6 +5,8 @@ namespace App\v1_0\Controllers;
 use Common\Mapper\ExpenseMapper;
 use Common\Model\Expense;
 use Common\Validation\ExpenseValidation;
+use Nen\Exception\NotFoundException;
+use Nen\Exception\ValidationException;
 use Nen\Validation\Values;
 use stdClass;
 
@@ -20,6 +22,8 @@ class ExpenseController extends PrivateController
 
     /**
      * @param int $expense_id
+     *
+     * @throws NotFoundException
      */
     public function viewAction(int $expense_id): void
     {
@@ -32,8 +36,7 @@ class ExpenseController extends PrivateController
         );
 
         if (!$expense) {
-            var_dump('not found');
-            exit;
+            throw new NotFoundException('Expense not found');
         }
 
         $this->response->setJsonContent([
@@ -45,14 +48,16 @@ class ExpenseController extends PrivateController
         ]);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function createAction(): void
     {
         $validation = new ExpenseValidation();
         $values = new Values($this->request->getPut() ?? []);
 
         if (!$validation->validate($values)) {
-            var_dump($validation->getMessages());
-            exit;
+            throw new ValidationException($validation);
         }
 
         $expense = new Expense();
@@ -74,6 +79,9 @@ class ExpenseController extends PrivateController
 
     /**
      * @param int $expense_id
+     *
+     * @throws NotFoundException
+     * @throws ValidationException
      */
     public function updateAction(int $expense_id): void
     {
@@ -87,16 +95,14 @@ class ExpenseController extends PrivateController
         );
 
         if (!$expense) {
-            var_dump('not found');
-            exit;
+            throw new NotFoundException('Expense not found');
         }
 
         $validation = new ExpenseValidation();
         $values = new Values($this->request->getPut() ?? []);
 
         if (!$validation->validate($values)) {
-            var_dump($validation->getMessages());
-            exit;
+            throw new ValidationException($validation);
         }
 
         $expense->setNote(
@@ -114,6 +120,8 @@ class ExpenseController extends PrivateController
 
     /**
      * @param int $expense_id
+     *
+     * @throws NotFoundException
      */
     public function deleteAction(int $expense_id): void
     {
@@ -127,8 +135,7 @@ class ExpenseController extends PrivateController
         );
 
         if (!$expense) {
-            var_dump('not found');
-            exit;
+            throw new NotFoundException('Expense not found');
         }
 
         $mapper->delete($expense);
