@@ -3,6 +3,7 @@
 namespace App\v1_0\Controllers;
 
 use Common\Binder\UserBinder;
+use Common\Formatter\UserFormatter;
 use Common\Mapper\UserMapper;
 use Common\Validation\UserValidation;
 use Nen\Exception\ValidationException;
@@ -14,11 +15,7 @@ class UserController extends PrivateController
 {
     public function viewAction(): void
     {
-        $this->response([
-            'user_id' => $this->user->getUserId(),
-            'name' => $this->user->getName(),
-            'email' => $this->user->getEmail(),
-        ]);
+        $this->format(new UserFormatter($this->user));
     }
 
     /**

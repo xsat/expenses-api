@@ -4,6 +4,8 @@ namespace App\v1_0\Controllers;
 
 use Common\Binder\ExpenseBinder;
 use Common\Binder\ListBinder;
+use Common\Formatter\ExpenseFormatter;
+use Common\Formatter\ExpenseListFormatter;
 use Common\Mapper\ExpenseMapper;
 use Common\Model\Expense;
 use Common\Validation\ExpenseValidation;
@@ -18,8 +20,6 @@ class ExpenseController extends PrivateController
 {
     /**
      * @throws ValidationException
-     *
-     * @todo Add formatters
      */
     public function listAction(): void
     {
@@ -31,25 +31,14 @@ class ExpenseController extends PrivateController
         }
 
         $mapper = new ExpenseMapper($this->connection);
-        $expenses = $mapper->getList($binder);
-        $list = [];
 
-        foreach ($expenses as $expense) {
-            $list[] = [
-                'expense_id' => $expense->getExpenseId(),
-                'user_id' => $expense->getUserId(),
-                'note' => $expense->getNote(),
-                'cost' => $expense->getCost(),
-                'spent_date' => $expense->getSpentDate(),
-            ];
-        }
-
-        $this->response([
-            'offset' => $binder->getOffset(),
-            'limit' => $binder->getLimit(),
-            'total' => $mapper->getTotal($binder),
-            'list' => $list,
-        ]);
+        $this->format(
+            new ExpenseListFormatter(
+                $mapper->getTotal($binder),
+                $mapper->getList($binder),
+                $binder
+            )
+        );
     }
 
     /**
@@ -71,13 +60,7 @@ class ExpenseController extends PrivateController
             throw new NotFoundException('Expense not found');
         }
 
-        $this->response([
-            'expense_id' => $expense->getExpenseId(),
-            'user_id' => $expense->getUserId(),
-            'note' => $expense->getNote(),
-            'cost' => $expense->getCost(),
-            'spent_date' => $expense->getSpentDate(),
-        ]);
+        $this->format(new ExpenseFormatter($expense));
     }
 
     /**
@@ -100,13 +83,7 @@ class ExpenseController extends PrivateController
 
         (new ExpenseMapper($this->connection))->create($expense);
 
-        $this->response([
-            'expense_id' => $expense->getExpenseId(),
-            'user_id' => $expense->getUserId(),
-            'note' => $expense->getNote(),
-            'cost' => $expense->getCost(),
-            'spent_date' => $expense->getSpentDate(),
-        ]);
+        $this->format(new ExpenseFormatter($expense));
     }
 
     /**s

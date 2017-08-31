@@ -3,9 +3,10 @@
 namespace App\v1_0\Controllers;
 
 use Common\Binder\LoginBinder;
+use Common\Formatter\AccessTokenFormatter;
 use Common\Mapper\UserMapper;
 use Common\Validation\LoginValidation;
-use Nen\Exception\ForbiddenException;
+use Nen\Exception\UnauthorizedException;
 use Nen\Exception\ValidationException;
 
 /**
@@ -15,7 +16,7 @@ class PublicAuthController extends Controller
 {
     /**
      * @throws ValidationException
-     * @throws ForbiddenException
+     * @throws UnauthorizedException
      *
      * @todo Create password manager
      */
@@ -34,17 +35,15 @@ class PublicAuthController extends Controller
             ]);
 
         if (!$this->user) {
-            throw new ForbiddenException('Email or password is not correct');
+            throw new UnauthorizedException('Email or password is not correct');
         }
 
         if (!password_verify($binder->getPassword(), $this->user->getPassword())) {
-            throw new ForbiddenException('Email or password is not correct');
+            throw new UnauthorizedException('Email or password is not correct');
         }
 
         $accessToken = $this->auth->createToken($this->user);
 
-        $this->response([
-            'token' => $accessToken->getToken(),
-        ]);
+        $this->format(new AccessTokenFormatter($accessToken));
     }
 }

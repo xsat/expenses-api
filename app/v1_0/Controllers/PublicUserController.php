@@ -3,6 +3,7 @@
 namespace App\v1_0\Controllers;
 
 use Common\Binder\UserBinder;
+use Common\Formatter\AccessTokenFormatter;
 use Common\Mapper\UserMapper;
 use Common\Model\User;
 use Common\Validation\UserValidation;
@@ -38,8 +39,6 @@ class PublicUserController extends Controller
 
         $accessToken = $this->auth->createToken($this->user);
 
-        $this->response([
-            'token' => $accessToken->getToken(),
-        ]);
+        $this->format(new AccessTokenFormatter($accessToken));
     }
 }

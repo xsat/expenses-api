@@ -8,6 +8,7 @@ use Common\Mapper\UserMapper;
 use Common\Model\User;
 use Nen\Database\Connection;
 use Nen\Database\ConnectionInterface;
+use Nen\Formatter\FormatterInterface;
 use Nen\Http\RequestInterface;
 use Nen\Http\ResponseInterface;
 use Nen\Web\Controller as NenController;
@@ -45,11 +46,25 @@ abstract class Controller extends NenController
     {
         parent::__construct($request, $response);
 
-        $this->connection = Connection::getInstance();
+        $this->connection = new Connection(
+            getenv('DB_HOST'),
+            getenv('DB_DATABASE'),
+            getenv('DB_USERNAME'),
+            getenv('DB_PASSWORD')
+        );
+
         $this->auth = new AuthManager(
             new AccessTokenMapper($this->connection),
             new UserMapper($this->connection)
         );
+    }
+
+    /**
+     * @param FormatterInterface $formatter
+     */
+    protected final function format(FormatterInterface $formatter): void
+    {
+        $this->response($formatter->format());
     }
 
     /**
