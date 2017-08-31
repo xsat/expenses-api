@@ -16,8 +16,6 @@ class PublicUserController extends Controller
 {
     /**
      * @throws ValidationException
-     *
-     * @todo Fix duplicate entities
      */
     public function createAction(): void
     {
