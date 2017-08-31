@@ -52,7 +52,7 @@ class ExpenseListFormatter implements FormatterInterface
         $list = [];
 
         foreach ($this->expenses as $expense) {
-            $data[] = (new ExpenseFormatter($expense))->format();
+            $list[] = (new ExpenseFormatter($expense))->format();
         }
 
         return [
