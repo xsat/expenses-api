@@ -6,6 +6,7 @@ use Common\Model\AccessToken;
 use Nen\Database\Query\Delete;
 use Nen\Database\Query\Expression;
 use Nen\Database\Query\Insert;
+use Nen\Database\Query\QueryInterface;
 use Nen\Database\Query\Select;
 use Nen\Database\Query\Update;
 use Nen\Mapper\Mapper;
@@ -20,13 +21,11 @@ class AccessTokenMapper extends Mapper
      * @param array $binds
      *
      * @return AccessToken[]
-     *
-     * @todo Replace * in list of fields
      */
     public function find(string $conditions = '', array $binds = []): array
     {
         $items = $this->connection->select(
-            new Select('access_token', $conditions, $binds)
+            $this->getQuery($conditions, $binds)
         );
 
         $modes = [];
@@ -47,7 +46,7 @@ class AccessTokenMapper extends Mapper
     public function findFirst(string $conditions = '', array $binds = []): ?AccessToken
     {
         $item = $this->connection->selectFirst(
-            new Select('access_token', $conditions, $binds)
+            $this->getQuery($conditions, $binds)
         );
 
         if (!$item) {
@@ -55,6 +54,22 @@ class AccessTokenMapper extends Mapper
         }
 
         return new AccessToken($item);
+    }
+
+    /**
+     * @param string $conditions
+     * @param array $binds
+     *
+     * @return QueryInterface
+     */
+    private function getQuery(string $conditions, array $binds): QueryInterface
+    {
+        return new Select(
+            'access_token',
+            '`access_token_id`, `user_id`, `token`, `expiry_date`',
+            $conditions,
+            $binds
+        );
     }
 
     /**

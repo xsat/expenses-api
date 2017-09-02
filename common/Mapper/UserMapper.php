@@ -5,6 +5,7 @@ namespace Common\Mapper;
 use Common\Model\User;
 use Nen\Database\Query\Delete;
 use Nen\Database\Query\Insert;
+use Nen\Database\Query\QueryInterface;
 use Nen\Database\Query\Select;
 use Nen\Database\Query\Update;
 use Nen\Mapper\Mapper;
@@ -23,7 +24,7 @@ class UserMapper extends Mapper
     public function find(string $conditions = '', array $binds = []): array
     {
         $items = $this->connection->select(
-            new Select('user', $conditions, $binds)
+            $this->getQuery($conditions, $binds)
         );
 
         $modes = [];
@@ -44,7 +45,7 @@ class UserMapper extends Mapper
     public function findFirst(string $conditions = '', array $binds = []): ?User
     {
         $item = $this->connection->selectFirst(
-            new Select('user', $conditions, $binds)
+            $this->getQuery($conditions, $binds)
         );
 
         if (!$item) {
@@ -52,6 +53,22 @@ class UserMapper extends Mapper
         }
 
         return new User($item);
+    }
+
+    /**
+     * @param string $conditions
+     * @param array $binds
+     *
+     * @return QueryInterface
+     */
+    private function getQuery(string $conditions, array $binds): QueryInterface
+    {
+        return new Select(
+            'user',
+            '`user_id`, `name`, `email`, `password`',
+            $conditions,
+            $binds
+        );
     }
 
     /**

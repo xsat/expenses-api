@@ -7,7 +7,7 @@ use Common\Model\Expense;
 use Nen\Database\Query\Delete;
 use Nen\Database\Query\Expression;
 use Nen\Database\Query\Insert;
-use Nen\Database\Query\Query;
+use Nen\Database\Query\QueryInterface;
 use Nen\Database\Query\Select;
 use Nen\Database\Query\Update;
 use Nen\Mapper\Mapper;
@@ -26,7 +26,7 @@ class ExpenseMapper extends Mapper
     public function find(string $conditions = '', array $binds = []): array
     {
         $items = $this->connection->select(
-            new Select('expense', $conditions, $binds)
+            $this->getQuery($conditions, $binds)
         );
 
         $modes = [];
@@ -47,7 +47,7 @@ class ExpenseMapper extends Mapper
     public function findFirst(string $conditions = '', array $binds = []): ?Expense
     {
         $item = $this->connection->selectFirst(
-            new Select('expense', $conditions, $binds)
+            $this->getQuery($conditions, $binds)
         );
 
         if (!$item) {
@@ -55,6 +55,22 @@ class ExpenseMapper extends Mapper
         }
 
         return new Expense($item);
+    }
+
+    /**
+     * @param string $conditions
+     * @param array $binds
+     *
+     * @return QueryInterface
+     */
+    private function getQuery(string $conditions, array $binds): QueryInterface
+    {
+        return new Select(
+            'expense',
+            '`expense_id`, `user_id`, `note`, `cost`, `spent_date`',
+            $conditions,
+            $binds
+        );
     }
 
     /**
@@ -154,10 +170,10 @@ class ExpenseMapper extends Mapper
     public function getTotal(ListBinder $binder): int
     {
         $result = $this->connection->selectFirst(
-            new Query(
-                'SELECT COUNT(`expense_id`) AS `count` 
-                 FROM `expense` 
-                 WHERE ' . $this->getConditions($binder),
+            new Select(
+                'expense',
+                'COUNT(`expense_id`) AS `count`',
+                $this->getConditions($binder),
                 $this->getBinds($binder)
             )
         );
