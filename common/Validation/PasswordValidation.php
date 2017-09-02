@@ -2,11 +2,7 @@
 
 namespace Common\Validation;
 
-use Common\Mapper\UserMapper;
-use Common\Model\User;
-use Common\Validation\Validator\UniqueEmail;
 use Nen\Validation\Validation;
-use Nen\Validation\Validator\Email;
 use Nen\Validation\Validator\Maximum;
 use Nen\Validation\Validator\Minimum;
 use Nen\Validation\Validator\Presence;
