@@ -1,6 +1,5 @@
 <?php
 
-use App\Controllers\IndexController;
 use App\v1_0\Controllers\AuthController;
 use App\v1_0\Controllers\ExpenseController;
 use App\v1_0\Controllers\PublicAuthController;
@@ -13,7 +12,6 @@ use Nen\Router\Route;
 use Nen\Router\Routes;
 
 return new Routes([
-    new Route(IndexController::class, 'main', null, Request::METHOD_POST),
     new Group('api/1.0', new Routes([
         new Group('auth', new Routes([
             new Route(PublicAuthController::class, 'login', null, Request::METHOD_POST),

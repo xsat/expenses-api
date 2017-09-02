@@ -69,6 +69,8 @@ abstract class Controller extends NenController
 
     /**
      * @param array|null $data
+     *
+     * @todo Add cross domain headers
      */
     protected final function response(array $data = null): void
     {
