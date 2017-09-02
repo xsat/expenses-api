@@ -65,6 +65,7 @@ class AuthManager
      * @return bool
      *
      * @todo Get token from header
+     * @todo Fix expression
      */
     public function checkToken(RequestInterface $request): bool
     {
