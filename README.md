@@ -5,7 +5,7 @@
 
 Request:
 ```
-POST /auth
+POST {{host}}/api/1.0/auth
 Content-Type: application/json
 {
     "email": "bob@email.com",
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 Request:
 ```
-DELETE /auth
+DELETE {{host}}/api/1.0/auth
 Authorization: Bearer {{access_token}}
 ```
 
@@ -43,7 +43,7 @@ Content-Type: application/json
 
 Request:
 ```
-POST /user
+POST {{host}}/api/1.0/user
 Content-Type: application/json
 {
     "name": "Bob",
@@ -65,7 +65,7 @@ Content-Type: application/json
 
 Request:
 ```
-PUT /user
+PUT {{host}}/api/1.0/user
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 {
@@ -85,7 +85,7 @@ Content-Type: application/json
 
 Request:
 ```
-GET /user
+GET {{host}}/api/1.0/user
 Authorization: Bearer {{access_token}}
 ```
 
@@ -104,7 +104,7 @@ Content-Type: application/json
 
 Request:
 ```
-DELETE /user
+DELETE {{host}}/api/1.0/user
 Authorization: Bearer {{access_token}}
 ```
 
@@ -119,7 +119,7 @@ Content-Type: application/json
 
 Request:
 ```
-PUT /user/password
+PUT {{host}}/api/1.0/user/password
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 {
@@ -140,7 +140,7 @@ Content-Type: application/json
 
 Request:
 ```
-POST /expense
+POST {{host}}/api/1.0/expense
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 {
@@ -167,7 +167,7 @@ Content-Type: application/json
 
 Request:
 ```
-PUT /expense/{{expense_id}}
+PUT {{host}}/api/1.0/expense/{{expense_id}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 {
@@ -188,7 +188,7 @@ Content-Type: application/json
 
 Request:
 ```
-GET /expense/{{expense_id}}
+GET {{host}}/api/1.0/expense/{{expense_id}}
 Authorization: Bearer {{access_token}}
 ```
 
@@ -209,7 +209,7 @@ Content-Type: application/json
 
 Request:
 ```
-DELETE /expense/{{expense_id}}
+DELETE {{host}}/api/1.0/expense/{{expense_id}}
 Authorization: Bearer {{access_token}}
 ```
 
@@ -239,7 +239,7 @@ Available params:
 
 Request:
 ```
-GET /expense
+GET {{host}}/api/1.0/expense
 Authorization: Bearer {{access_token}}
 ```
 
