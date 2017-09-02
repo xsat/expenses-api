@@ -184,7 +184,6 @@ Content-Type: application/json
 {}
 ```
 
-
 ### 3.3. View expense
 
 Request:
@@ -220,7 +219,6 @@ HTTP/1.x 200 OK
 Content-Type: application/json
 {}
 ```
-
 
 ### 3.5. View expense list
 
