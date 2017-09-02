@@ -6,6 +6,7 @@ use App\v1_0\Controllers\ExpenseController;
 use App\v1_0\Controllers\PublicAuthController;
 use App\v1_0\Controllers\PublicUserController;
 use App\v1_0\Controllers\UserController;
+use App\v1_0\Controllers\UserPasswordController;
 use Nen\Http\Request;
 use Nen\Router\Group;
 use Nen\Router\Route;
@@ -23,6 +24,9 @@ return new Routes([
             new Route(PublicUserController::class, 'create', null, Request::METHOD_POST),
             new Route(UserController::class, 'update', null, Request::METHOD_PUT),
             new Route(UserController::class, 'delete', null, Request::METHOD_DELETE),
+            new Group('password', new Routes([
+                new Route(UserPasswordController::class, 'update', null, Request::METHOD_PUT),
+            ])),
         ])),
         new Group('expense', new Routes([
             new Route(ExpenseController::class, 'list', null, Request::METHOD_GET),

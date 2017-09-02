@@ -2,12 +2,13 @@
 
 namespace Common\Model;
 
+use Common\PasswordInterface;
 use Nen\Model\Model;
 
 /**
  * Class User
  */
-class User extends Model
+class User extends Model implements PasswordInterface
 {
     /**
      * @var int
@@ -78,17 +79,17 @@ class User extends Model
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
     /**
-     * @param string $password
+     * @param null|string $password
      */
-    public function setPassword(string $password)
+    public function setPassword(?string $password)
     {
         $this->password = $password;
     }

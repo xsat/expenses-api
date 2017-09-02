@@ -1,4 +1,4 @@
-# API v1.0
+# API documentation
 
 ## 1. Auth
 ### 1.1. Login
@@ -70,8 +70,7 @@ Authorization: Bearer {{access_token}}
 Content-Type: application/json
 {
     "name": "Bob",
-    "email": "bob@email.com",
-    "password": "12356"
+    "email": "bob@email.com"
 }
 ```
 
@@ -107,6 +106,25 @@ Request:
 ```
 DELETE /user
 Authorization: Bearer {{access_token}}
+```
+
+Response:
+```
+HTTP/1.x 200 OK
+Content-Type: application/json
+{}
+```
+
+### 2.5. Update user password
+
+Request:
+```
+PUT /user/password
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+{
+    "password": "12356"
+}
 ```
 
 Response:
@@ -205,6 +223,21 @@ Content-Type: application/json
 
 
 ### 3.5. View expense list
+
+Available params:
+
+* offset  // default **0**
+* limit  // default **10**
+* order // default **expiry_date**
+    - expiry_date 
+    - expense_id
+    - note
+* sort // default **desc**
+    - desc
+    - asc
+* search
+* from_date // example *2017-01-01 00:00:00*
+* to_date // example *2017-12-31 23:59:59*
 
 Request:
 ```

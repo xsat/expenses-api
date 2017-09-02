@@ -5,6 +5,7 @@ namespace App\v1_0\Controllers;
 use Common\Binder\LoginBinder;
 use Common\Formatter\AccessTokenFormatter;
 use Common\Mapper\UserMapper;
+use Common\PasswordManager;
 use Common\Validation\LoginValidation;
 use Nen\Exception\UnauthorizedException;
 use Nen\Exception\ValidationException;
@@ -17,8 +18,6 @@ class PublicAuthController extends Controller
     /**
      * @throws ValidationException
      * @throws UnauthorizedException
-     *
-     * @todo Create password manager
      */
     public function loginAction(): void
     {
@@ -38,7 +37,7 @@ class PublicAuthController extends Controller
             throw new UnauthorizedException('Email or password is not correct');
         }
 
-        if (!password_verify($binder->getPassword(), $this->user->getPassword())) {
+        if (!(new PasswordManager())->isVerified($binder, $this->user)) {
             throw new UnauthorizedException('Email or password is not correct');
         }
 

@@ -12,12 +12,12 @@ use Nen\Validation\Validator\Minimum;
 use Nen\Validation\Validator\Presence;
 
 /**
- * Class UserValidation
+ * Class UserWithPasswordValidation
  */
-class UserValidation extends Validation
+class UserWithPasswordValidation extends Validation
 {
     /**
-     * UserValidation constructor.
+     * UserWithPasswordValidation constructor.
      *
      * @param UserMapper $mapper
      * @param User|null $user
@@ -33,6 +33,10 @@ class UserValidation extends Validation
             new Email('email', 'Email is not valid'),
             new UniqueEmail('email', $mapper, $user, 'Email is not available'),
             new Maximum('email', 255, 'The maximum length is 255'),
+
+            new Presence('password', 'Can\'t be empty'),
+            new Minimum('password', 6, 'The minimum length is 6'),
+            new Maximum('password', 255, 'The maximum length is 255'),
         ]);
     }
 }

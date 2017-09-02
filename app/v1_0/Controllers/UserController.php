@@ -20,8 +20,6 @@ class UserController extends PrivateController
 
     /**
      * @throws ValidationException
-     *
-     * @todo Separate method into password and other
      */
     public function updateAction(): void
     {
@@ -35,9 +33,6 @@ class UserController extends PrivateController
 
         $this->user->setName($binder->getName());
         $this->user->setEmail($binder->getEmail());
-        $this->user->setPassword(
-            password_hash($binder->getPassword(), PASSWORD_BCRYPT)
-        );
         $mapper->update($this->user);
 
         $this->response();

@@ -6,35 +6,14 @@ use Common\PasswordInterface;
 use Nen\Binder\Binder;
 
 /**
- * Class LoginBinder
+ * Class PasswordBinder
  */
-class LoginBinder extends Binder implements PasswordInterface
+class PasswordBinder extends Binder implements PasswordInterface
 {
     /**
      * @var string
      */
-    private $email;
-
-    /**
-     * @var string
-     */
     private $password;
-
-    /**
-     * @return null|string
-     */
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param null|string $email
-     */
-    public function setEmail(?string $email)
-    {
-        $this->email = $email;
-    }
 
     /**
      * @return null|string
