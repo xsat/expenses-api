@@ -87,7 +87,14 @@ class AccessTokenMapper extends Mapper
     public function update(AccessToken $accessToken): void
     {
         $this->connection->execute(
-            new Update('access_token', $this->convert($accessToken))
+            new Update(
+                'access_token',
+                $this->convert($accessToken),
+                'access_token_id = :access_token_id',
+                [
+                    'access_token_id' => $accessToken->getAccessTokenId(),
+                ]
+            )
         );
     }
 

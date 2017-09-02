@@ -84,7 +84,14 @@ class UserMapper extends Mapper
     public function update(User $user): void
     {
         $this->connection->execute(
-            new Update('user', $this->convert($user))
+            new Update(
+                'user',
+                $this->convert($user),
+                'user_id = :user_id',
+                [
+                    'user_id' => $user->getUserId(),
+                ]
+            )
         );
     }
 

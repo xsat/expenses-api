@@ -87,7 +87,14 @@ class ExpenseMapper extends Mapper
     public function update(Expense $expense): void
     {
         $this->connection->execute(
-            new Update('expense', $this->convert($expense))
+            new Update(
+                'expense',
+                $this->convert($expense),
+                'expense_id = :expense_id',
+                [
+                    'expense_id' => $expense->getExpenseId(),
+                ]
+            )
         );
     }
 
