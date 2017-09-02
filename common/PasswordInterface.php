@@ -14,5 +14,5 @@ interface PasswordInterface {
     /**
      * @param null|string $password
      */
-    public function setPassword(?string $password);
+    public function setPassword(?string $password): void;
 }

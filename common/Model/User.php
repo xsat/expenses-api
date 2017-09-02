@@ -41,7 +41,7 @@ class User extends Model implements PasswordInterface
     /**
      * @param int|null $user_id
      */
-    public function setUserId(?int $user_id)
+    public function setUserId(?int $user_id): void
     {
         $this->user_id = $user_id;
     }
@@ -57,7 +57,7 @@ class User extends Model implements PasswordInterface
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -73,7 +73,7 @@ class User extends Model implements PasswordInterface
     /**
      * @param string $email
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
@@ -89,7 +89,7 @@ class User extends Model implements PasswordInterface
     /**
      * @param null|string $password
      */
-    public function setPassword(?string $password)
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
     }

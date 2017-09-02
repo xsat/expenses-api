@@ -45,7 +45,7 @@ class Expense extends Model
     /**
      * @param int|null $expense_id
      */
-    public function setExpenseId(?int $expense_id)
+    public function setExpenseId(?int $expense_id): void
     {
         $this->expense_id = $expense_id;
     }
@@ -61,7 +61,7 @@ class Expense extends Model
     /**
      * @param int $user_id
      */
-    public function setUserId(int $user_id)
+    public function setUserId(int $user_id): void
     {
         $this->user_id = $user_id;
     }
@@ -77,7 +77,7 @@ class Expense extends Model
     /**
      * @param null|string $description
      */
-    public function setNote(?string $description)
+    public function setNote(?string $description): void
     {
         $this->note = $description;
     }
@@ -93,7 +93,7 @@ class Expense extends Model
     /**
      * @param float $cost
      */
-    public function setCost(float $cost)
+    public function setCost(float $cost): void
     {
         $this->cost = $cost;
     }
@@ -109,7 +109,7 @@ class Expense extends Model
     /**
      * @param null|string $spent_date
      */
-    public function setSpentDate(?string $spent_date)
+    public function setSpentDate(?string $spent_date): void
     {
         $this->spent_date = $spent_date;
     }

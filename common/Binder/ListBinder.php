@@ -68,7 +68,7 @@ class ListBinder extends Binder
     /**
      * @param int $offset
      */
-    public function setOffset(int $offset)
+    public function setOffset(int $offset): void
     {
         $this->offset = $offset;
     }
@@ -84,7 +84,7 @@ class ListBinder extends Binder
     /**
      * @param int $limit
      */
-    public function setLimit(int $limit)
+    public function setLimit(int $limit): void
     {
         $this->limit = $limit;
     }
@@ -100,7 +100,7 @@ class ListBinder extends Binder
     /**
      * @param string $order
      */
-    public function setOrder(string $order)
+    public function setOrder(string $order): void
     {
         $this->order = $order;
     }
@@ -116,7 +116,7 @@ class ListBinder extends Binder
     /**
      * @param string $sort
      */
-    public function setSort(string $sort)
+    public function setSort(string $sort): void
     {
         $this->sort = $sort;
     }
@@ -132,7 +132,7 @@ class ListBinder extends Binder
     /**
      * @param null|string $search
      */
-    public function setSearch(?string $search)
+    public function setSearch(?string $search): void
     {
         $this->search = $search;
     }
@@ -148,7 +148,7 @@ class ListBinder extends Binder
     /**
      * @param null|string $from_date
      */
-    public function setFromDate(?string $from_date)
+    public function setFromDate(?string $from_date): void
     {
         $this->from_date = $from_date;
     }
@@ -164,7 +164,7 @@ class ListBinder extends Binder
     /**
      * @param null|string $to_date
      */
-    public function setToDate(?string $to_date)
+    public function setToDate(?string $to_date): void
     {
         $this->to_date = $to_date;
     }

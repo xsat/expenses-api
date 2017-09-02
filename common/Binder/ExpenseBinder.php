@@ -35,7 +35,7 @@ class ExpenseBinder extends Binder
     /**
      * @param null|string $note
      */
-    public function setNote(?string $note)
+    public function setNote(?string $note): void
     {
         $this->note = $note;
     }
@@ -51,7 +51,7 @@ class ExpenseBinder extends Binder
     /**
      * @param float|null $cost
      */
-    public function setCost(?float $cost)
+    public function setCost(?float $cost): void
     {
         $this->cost = $cost;
     }
@@ -67,7 +67,7 @@ class ExpenseBinder extends Binder
     /**
      * @param null|string $spent_date
      */
-    public function setSpentDate(?string $spent_date)
+    public function setSpentDate(?string $spent_date): void
     {
         $this->spent_date = $spent_date;
     }

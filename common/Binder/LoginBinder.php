@@ -31,7 +31,7 @@ class LoginBinder extends Binder implements PasswordInterface
     /**
      * @param null|string $email
      */
-    public function setEmail(?string $email)
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }
@@ -47,7 +47,7 @@ class LoginBinder extends Binder implements PasswordInterface
     /**
      * @param null|string $password
      */
-    public function setPassword(?string $password)
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
     }

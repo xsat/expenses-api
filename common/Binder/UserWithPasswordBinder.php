@@ -25,7 +25,7 @@ class UserWithPasswordBinder extends UserBinder implements PasswordInterface
     /**
      * @param null|string $password
      */
-    public function setPassword(?string $password)
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
     }

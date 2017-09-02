@@ -30,7 +30,7 @@ class UserBinder extends Binder
     /**
      * @param null|string $name
      */
-    public function setName(?string $name)
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
@@ -46,7 +46,7 @@ class UserBinder extends Binder
     /**
      * @param null|string $email
      */
-    public function setEmail(?string $email)
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }

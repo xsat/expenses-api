@@ -40,7 +40,7 @@ class AccessToken extends Model
     /**
      * @param int|null $access_token_id
      */
-    public function setAccessTokenId(?int $access_token_id)
+    public function setAccessTokenId(?int $access_token_id): void
     {
         $this->access_token_id = $access_token_id;
     }
@@ -56,7 +56,7 @@ class AccessToken extends Model
     /**
      * @param int $user_id
      */
-    public function setUserId(int $user_id)
+    public function setUserId(int $user_id): void
     {
         $this->user_id = $user_id;
     }
@@ -72,7 +72,7 @@ class AccessToken extends Model
     /**
      * @param string $token
      */
-    public function setToken(string $token)
+    public function setToken(string $token): void
     {
         $this->token = $token;
     }
@@ -88,7 +88,7 @@ class AccessToken extends Model
     /**
      * @param null|string $expiry_date
      */
-    public function setExpiryDate(?string $expiry_date)
+    public function setExpiryDate(?string $expiry_date): void
     {
         $this->expiry_date = $expiry_date;
     }
