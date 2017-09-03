@@ -5,8 +5,6 @@ ini_set('display_errors', 'on');
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-define('DATA_DIR', __DIR__ . '/../data/');
-
 use Dotenv\Dotenv;
 use Nen\Application;
 
