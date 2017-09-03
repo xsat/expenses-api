@@ -64,12 +64,11 @@ class AuthManager
      *
      * @return bool
      *
-     * @todo Get token from header
      * @todo Fix expression
      */
     public function checkToken(RequestInterface $request): bool
     {
-        $token = $request->getQuery('token');
+        $token = $this->getToken($request);
 
         if (!$token) {
             return false;
@@ -84,6 +83,27 @@ class AuthManager
         );
 
         return $this->accessToken !== null;
+    }
+
+    /**
+     * @param RequestInterface $request
+     *
+     * @return null|string
+     */
+    private function getToken(RequestInterface $request): ?string {
+        $token = $request->getHeader('Authorization');
+
+        if (!$token) {
+            return null;
+        }
+
+        preg_match('/^Bearer (.*)$/isu', $token, $matches);
+
+        if (!isset($matches[1])) {
+            return null;
+        }
+
+        return trim($matches[1]);
     }
 
     public function deleteToken(): void

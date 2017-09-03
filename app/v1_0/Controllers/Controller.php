@@ -46,6 +46,19 @@ abstract class Controller extends NenController
     {
         parent::__construct($request, $response);
 
+        $this->response->setHeader(
+            'Content-Type', 'application/json; charset=utf-8'
+        );
+        $this->response->setHeader(
+            'Access-Control-Allow-Origin', '*'
+        );
+        $this->response->setHeader(
+            'Access-Control-Allow-Headers', 'Content-Type, Authorization'
+        );
+        $this->response->setHeader(
+            'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'
+        );
+
         $this->connection = new Connection(
             getenv('DB_HOST'),
             getenv('DB_DATABASE'),
@@ -69,8 +82,6 @@ abstract class Controller extends NenController
 
     /**
      * @param array|null $data
-     *
-     * @todo Add cross domain headers
      */
     protected final function response(array $data = null): void
     {
