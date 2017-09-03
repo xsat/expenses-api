@@ -37,18 +37,18 @@ class ListValidation extends Validation
     public function __construct()
     {
         parent::__construct([
-            new Numerical('offset', 'Offset is not valid'),
+            new Numerical('offset', 'Field `offset` must be numeric'),
 
-            new Numerical('limit', 'Limit is not valid'),
+            new Numerical('limit', 'Field `limit` must be numeric'),
 
-            new Range('order', $this->orders, 'Order is not valid'),
+            new Range('order', $this->orders, 'Field `order` must not be a part of list: ' . implode(', ' , $this->orders)),
 
-            new Range('sort', $this->sorts, 'Sort is not valid'),
+            new Range('sort', $this->sorts, 'Field `sort` must not be a part of list: ' . implode(', ' , $this->sorts)),
 
-            new Maximum('search', 255, 'The maximum length is 255'),
+            new Maximum('search', 255, 'Field `search` must not exceed 255 characters long'),
 
-            new Date('from_date', 'Y-m-d H:i:s', 'Date is not valid'),
-            new Date('to_date', 'Y-m-d H:i:s', 'Date is not valid'),
+            new Date('from_date', 'Y-m-d H:i:s', 'Field `from_date` is not a valid date'),
+            new Date('to_date', 'Y-m-d H:i:s', 'Field `to_date` is not a valid date'),
         ]);
     }
 }

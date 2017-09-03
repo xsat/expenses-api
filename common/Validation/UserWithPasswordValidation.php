@@ -25,18 +25,18 @@ class UserWithPasswordValidation extends Validation
     public function __construct(UserMapper $mapper, ?User $user = null)
     {
         parent::__construct([
-            new Presence('name', 'Can\'t be empty'),
-            new Minimum('name', 1, 'The minimum length is 1'),
-            new Maximum('name', 255, 'The maximum length is 255'),
+            new Presence('name', 'Field `name` is required'),
+            new Minimum('name', 1, 'Field `name` must be at least one character long'),
+            new Maximum('name', 255, 'Field `name` must not exceed 255 characters long'),
 
-            new Presence('email', 'Can\'t be empty'),
-            new Email('email', 'Email is not valid'),
-            new UniqueEmail('email', $mapper, $user, 'Email is not available'),
-            new Maximum('email', 255, 'The maximum length is 255'),
+            new Presence('email', 'Field `email` is required'),
+            new Email('email', 'Field `email` must be an email address'),
+            new UniqueEmail('email', $mapper, $user, 'Field `email` must be unique'),
+            new Maximum('email', 255, 'Field `email` must not exceed 255 characters long'),
 
-            new Presence('password', 'Can\'t be empty'),
-            new Minimum('password', 6, 'The minimum length is 6'),
-            new Maximum('password', 255, 'The maximum length is 255'),
+            new Presence('password', 'Field `password` is required'),
+            new Minimum('password', 6, 'Field `password` must be at least 6 characters long'),
+            new Maximum('password', 255, 'Field `password` must not exceed 255 characters long'),
         ]);
     }
 }

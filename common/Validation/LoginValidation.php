@@ -18,12 +18,12 @@ class LoginValidation extends Validation
     public function __construct()
     {
         parent::__construct([
-            new Presence('email', 'Can\'t be empty'),
-            new Email('email', 'Email is not valid'),
-            new Maximum('email', 255, 'The maximum length is 255'),
+            new Presence('email', 'Field `email` is required'),
+            new Email('email', 'Field `email` must be an email address'),
+            new Maximum('email', 255, 'Field `email` must not exceed 255 characters long'),
 
-            new Presence('password', 'Can\'t be empty'),
-            new Maximum('password', 255, 'The maximum length is 255'),
+            new Presence('password', 'Field `password` is required'),
+            new Maximum('password', 255, 'Field `password` must not exceed 255 characters long'),
         ]);
     }
 }

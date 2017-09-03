@@ -19,12 +19,12 @@ class ExpenseValidation extends Validation
     public function __construct()
     {
         parent::__construct([
-            new Maximum('note', 255, 'The maximum length is 255'),
+            new Maximum('note', 255, 'Field `note` must not exceed 255 characters long'),
 
-            new Presence('cost', 'Can\'t be empty'),
-            new Numerical('cost', 'Cost is not valid'),
+            new Presence('cost', 'Field `cost` is required'),
+            new Numerical('cost', 'Field `cost` must be numeric'),
 
-            new Date('spent_date', 'Y-m-d H:i:s', 'Date is not valid'),
+            new Date('spent_date', 'Y-m-d H:i:s', 'Field `spent_date` is not a valid date'),
         ]);
     }
 }
