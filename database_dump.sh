@@ -4,7 +4,7 @@
 path='C:\xampp\mysql\bin\'
 
 # Your database name
-database=waste_of_money
+database=expenses
 
 ${path}mysqldump --host=localhost \
                  --user=root \

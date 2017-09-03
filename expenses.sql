@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.1.22-MariaDB, for Win32 (AMD64)
 --
--- Host: localhost    Database: waste_of_money
+-- Host: localhost    Database: expenses
 -- ------------------------------------------------------
 -- Server version	10.1.22-MariaDB
 
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `waste_of_money`
+-- Current Database: `expenses`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `waste_of_money` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `expenses` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `waste_of_money`;
+USE `expenses`;
 
 --
 -- Table structure for table `access_token`
@@ -89,4 +89,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-27 13:04:42
+-- Dump completed on 2017-09-03 15:08:59
