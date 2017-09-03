@@ -63,8 +63,6 @@ class AuthManager
      * @param RequestInterface $request
      *
      * @return bool
-     *
-     * @todo Fix expression
      */
     public function checkToken(RequestInterface $request): bool
     {
@@ -75,10 +73,9 @@ class AuthManager
         }
 
         $this->accessToken = $this->tokenMapper->findFirst(
-            'token = :token AND expiry_date >= :expiry_date',
+            'token = :token AND expiry_date >= CURRENT_TIMESTAMP()',
             [
                 'token' => $token,
-                'expiry_date' => new Expression('CURRENT_TIMESTAMP()'),
             ]
         );
 
