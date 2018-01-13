@@ -65,7 +65,7 @@ class UserMapper extends Mapper
     {
         return new Select(
             'user',
-            '`user_id`, `name`, `email`, `password`',
+            '"user_id", "name", "email", "password"',
             $conditions,
             $binds
         );

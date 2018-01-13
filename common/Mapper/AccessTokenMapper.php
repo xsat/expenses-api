@@ -66,7 +66,7 @@ class AccessTokenMapper extends Mapper
     {
         return new Select(
             'access_token',
-            '`access_token_id`, `user_id`, `token`, `expiry_date`',
+            '"access_token_id", "user_id", "token", "expiry_date"',
             $conditions,
             $binds
         );

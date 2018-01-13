@@ -67,7 +67,7 @@ class ExpenseMapper extends Mapper
     {
         return new Select(
             'expense',
-            '`expense_id`, `user_id`, `note`, `cost`, `spent_date`',
+            '"expense_id", "user_id", "note", "cost", "spent_date"',
             $conditions,
             $binds
         );
@@ -172,7 +172,7 @@ class ExpenseMapper extends Mapper
         $result = $this->connection->selectFirst(
             new Select(
                 'expense',
-                'COUNT(`expense_id`) AS `count`',
+                'COUNT("expense_id") AS "count"',
                 $this->getConditions($binder),
                 $this->getBinds($binder)
             )
