@@ -8,6 +8,7 @@ use Common\Mapper\UserMapper;
 use Common\Model\User;
 use Common\PasswordManager;
 use Common\Validation\UserWithPasswordValidation;
+use Exception;
 use Nen\Exception\ValidationException;
 
 /**
@@ -17,6 +18,7 @@ class PublicUserController extends Controller
 {
     /**
      * @throws ValidationException
+     * @throws Exception
      */
     public function createAction(): void
     {

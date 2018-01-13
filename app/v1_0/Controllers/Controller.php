@@ -63,7 +63,8 @@ abstract class Controller extends NenController
             getenv('DB_HOST'),
             getenv('DB_DATABASE'),
             getenv('DB_USERNAME'),
-            getenv('DB_PASSWORD')
+            getenv('DB_PASSWORD'),
+            getenv('DB_ENGINE')
         );
 
         $this->auth = new AuthManager(

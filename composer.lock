@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0786ebed6e19f4ef9e2ba6e84538d0ea",
+    "content-hash": "387a0cd674c4697ccfbaefdd9277b0af",
     "packages": [
         {
             "name": "vlucas/phpdotenv",
@@ -58,16 +58,16 @@
         },
         {
             "name": "xsat/nen",
-            "version": "v1.10.0",
+            "version": "v1.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xsat/nen.git",
-                "reference": "e73fe86239de45e875bb26d97fa3fae0b54de501"
+                "reference": "07df3c430bf8e8bb29fa9c620c5484cd1fe95db1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xsat/nen/zipball/e73fe86239de45e875bb26d97fa3fae0b54de501",
-                "reference": "e73fe86239de45e875bb26d97fa3fae0b54de501",
+                "url": "https://api.github.com/repos/xsat/nen/zipball/07df3c430bf8e8bb29fa9c620c5484cd1fe95db1",
+                "reference": "07df3c430bf8e8bb29fa9c620c5484cd1fe95db1",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 "issues": "https://github.com/xsat/nen/issues?state=open",
                 "source": "https://github.com/xsat/nen"
             },
-            "time": "2017-09-03T08:21:12+00:00"
+            "time": "2018-01-13T20:43:58+00:00"
         }
     ],
     "packages-dev": [],

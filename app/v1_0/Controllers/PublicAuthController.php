@@ -7,6 +7,7 @@ use Common\Formatter\AccessTokenFormatter;
 use Common\Mapper\UserMapper;
 use Common\PasswordManager;
 use Common\Validation\LoginValidation;
+use Exception;
 use Nen\Exception\UnauthorizedException;
 use Nen\Exception\ValidationException;
 
@@ -18,6 +19,7 @@ class PublicAuthController extends Controller
     /**
      * @throws ValidationException
      * @throws UnauthorizedException
+     * @throws Exception
      */
     public function loginAction(): void
     {

@@ -19,7 +19,7 @@ class UserPasswordController extends PrivateController
     public function updateAction(): void
     {
         $mapper = new UserMapper($this->connection);
-        $validation = new PasswordValidation($mapper, $this->user);
+        $validation = new PasswordValidation();
         $binder = new PasswordBinder($this->request->getPut() ?? []);
 
         if (!$validation->validate($binder)) {

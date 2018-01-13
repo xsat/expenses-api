@@ -6,7 +6,7 @@ use Common\Mapper\AccessTokenMapper;
 use Common\Mapper\UserMapper;
 use Common\Model\AccessToken;
 use Common\Model\User;
-use Nen\Database\Query\Expression;
+use Exception;
 use Nen\Http\RequestInterface;
 
 /**
@@ -48,6 +48,8 @@ class AuthManager
      * @param User $user
      *
      * @return AccessToken
+     *
+     * @throws Exception
      */
     public function createToken(User $user): AccessToken
     {
@@ -87,7 +89,8 @@ class AuthManager
      *
      * @return null|string
      */
-    private function getToken(RequestInterface $request): ?string {
+    private function getToken(RequestInterface $request): ?string
+    {
         $token = $request->getHeader('Authorization');
 
         if (!$token) {
