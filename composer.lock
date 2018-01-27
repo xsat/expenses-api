@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "83455640bfd7166fc1a8af0d3fb40476",
+    "content-hash": "03f16f01174e632959124b2195556fe9",
     "packages": [
         {
             "name": "xsat/nen",
-            "version": "v1.11.0",
+            "version": "v1.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xsat/nen.git",
-                "reference": "7cf90103e8ec1c01ec02c93c5e710576ff8cc92c"
+                "reference": "31b81fd3e5222b442a72e5bb3f0811f08541091c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xsat/nen/zipball/7cf90103e8ec1c01ec02c93c5e710576ff8cc92c",
-                "reference": "7cf90103e8ec1c01ec02c93c5e710576ff8cc92c",
+                "url": "https://api.github.com/repos/xsat/nen/zipball/31b81fd3e5222b442a72e5bb3f0811f08541091c",
+                "reference": "31b81fd3e5222b442a72e5bb3f0811f08541091c",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "issues": "https://github.com/xsat/nen/issues?state=open",
                 "source": "https://github.com/xsat/nen"
             },
-            "time": "2018-01-27T21:05:46+00:00"
+            "time": "2018-01-27T21:20:30+00:00"
         }
     ],
     "packages-dev": [],

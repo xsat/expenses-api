@@ -3,12 +3,12 @@
 namespace Common\Mapper;
 
 use Common\Model\AccessToken;
-use Nen\Database\Query\Delete;
-use Nen\Database\Query\Expression;
-use Nen\Database\Query\Insert;
-use Nen\Database\Query\QueryInterface;
-use Nen\Database\Query\Select;
-use Nen\Database\Query\Update;
+use Nen\Database\Expression;
+use Nen\Database\PostgreSQL\Delete;
+use Nen\Database\PostgreSQL\Insert;
+use Nen\Database\PostgreSQL\Select;
+use Nen\Database\PostgreSQL\Update;
+use Nen\Database\QueryInterface;
 use Nen\Mapper\Mapper;
 
 /**
