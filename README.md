@@ -7,6 +7,8 @@ Request:
 ```
 POST {{host}}/api/1.0/auth
 Content-Type: application/json
+```
+```json
 {
     "email": "bob@email.com",
     "password": "12356"
@@ -17,6 +19,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {
     "token": "{{access_token}}"
 }
@@ -34,6 +38,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {}
 ```
 
@@ -45,6 +51,8 @@ Request:
 ```
 POST {{host}}/api/1.0/user
 Content-Type: application/json
+```
+```json
 {
     "name": "Bob",
     "email": "bob@email.com",
@@ -56,6 +64,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {
     "token": "{{access_token}}"
 }
@@ -68,6 +78,8 @@ Request:
 PUT {{host}}/api/1.0/user
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
+```
+```json
 {
     "name": "Bob",
     "email": "bob@email.com"
@@ -78,6 +90,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {}
 ```
 
@@ -93,6 +107,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {
     "user_id": 1,
     "name": "Bob",
@@ -112,6 +128,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {}
 ```
 
@@ -122,6 +140,8 @@ Request:
 PUT {{host}}/api/1.0/user/password
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
+```
+```json
 {
     "password": "12356"
 }
@@ -131,6 +151,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {}
 ```
 
@@ -143,6 +165,8 @@ Request:
 POST {{host}}/api/1.0/expense
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
+```
+```json
 {
     "note": "I bought an espresso", // optional
     "cost": 15.00,
@@ -154,6 +178,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {
     "expense_id": 2,
     "user_id": 17,
@@ -170,6 +196,8 @@ Request:
 PUT {{host}}/api/1.0/expense/{{expense_id}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
+```
+```json
 {
     "note": "I bought an espresso", // optional
     "cost": 20.00,
@@ -181,6 +209,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {}
 ```
 
@@ -196,6 +226,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {
     "expense_id": 2,
     "user_id": 17,
@@ -217,6 +249,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {}
 ```
 
@@ -247,6 +281,8 @@ Response:
 ```
 HTTP/1.x 200 OK
 Content-Type: application/json
+```
+```json
 {
     "offset": 0,
     "limit": 10,
@@ -258,9 +294,7 @@ Content-Type: application/json
             "note": "I bought an espresso",
             "cost": 15,
             "spent_date": "2017-01-01 12:12:12"
-        },
-        
-        ...
+        }
     ]
 }
 ```
