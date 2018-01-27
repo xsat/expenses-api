@@ -124,7 +124,7 @@ class AccessTokenMapper extends Mapper
             'user_id' => $accessToken->getUserId(),
             'token' => $accessToken->getToken(),
             'expiry_date' => $accessToken->getExpiryDate() ??
-                new Expression('CURRENT_TIMESTAMP + INTERVAL 1 HOUR'),
+                new Expression('CURRENT_TIMESTAMP + INTERVAL \'1\' HOUR'),
         ];
     }
 
