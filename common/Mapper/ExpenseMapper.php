@@ -127,7 +127,7 @@ class ExpenseMapper extends Mapper
                 new Expression('NULL'),
             'cost' => $expense->getCost(),
             'spent_date' => $expense->getSpentDate() ??
-                new Expression('CURRENT_TIMESTAMP()'),
+                new Expression('CURRENT_TIMESTAMP'),
         ];
     }
 
