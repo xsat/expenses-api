@@ -75,7 +75,7 @@ class AuthManager
         }
 
         $this->accessToken = $this->tokenMapper->findFirst(
-            'token = :token AND expiry_date >= CURRENT_TIMESTAMP()',
+            'token = :token AND expiry_date >= CURRENT_TIMESTAMP',
             [
                 'token' => $token,
             ]
