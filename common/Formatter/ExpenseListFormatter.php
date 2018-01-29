@@ -59,7 +59,7 @@ class ExpenseListFormatter implements FormatterInterface
             'offset' => $this->binder->getOffset(),
             'limit' => $this->binder->getLimit(),
             'total' => $this->total,
-            'list' => $list,
+            'items' => $list,
         ];
     }
 }

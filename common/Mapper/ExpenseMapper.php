@@ -203,7 +203,7 @@ class ExpenseMapper extends Mapper
         }
 
         if (!$conditions) {
-            $conditions[] = 1;
+            $conditions[] = '\'1\'';
         }
 
         return implode(' AND ', $conditions);

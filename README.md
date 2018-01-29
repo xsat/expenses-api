@@ -287,7 +287,7 @@ Content-Type: application/json
     "offset": 0,
     "limit": 10,
     "total": 12,
-    "list": [
+    "items": [
         {
             "expense_id": 7,
             "user_id": 34,
