@@ -7,7 +7,7 @@
   },
   "require": {
     "php": "^7.1.3",
-    "xsat/nen": "1.11.2"
+    "xsat/nen": "1.12.0"
   },
   "repositories": [
     {
